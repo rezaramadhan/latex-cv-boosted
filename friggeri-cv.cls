@@ -26,13 +26,21 @@
 \definecolor{purple}{HTML}{D3A4F9}
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
+\definecolor{yellowgreen}{HTML}{13B4CD}
+\definecolor{brickred}{HTML}{8913CD}
+\definecolor{sepia}{HTML}{CD8913}
+
 
 \ifdefined\@cv@print
   \colorlet{green}{gray}
   \colorlet{orange}{gray}
   \colorlet{purple}{gray}
+  \colorlet{brown}{gray}
   \colorlet{red}{gray}
   \colorlet{blue}{gray}
+  \colorlet{yellowgreen}{gray}
+  \colorlet{brickred}{gray}
+  \colorlet{sepia}{gray}
   \colorlet{fillheader}{white}
   \colorlet{header}{gray}
 \else
@@ -56,7 +64,7 @@
 \defaultfontfeatures{Mapping=tex-text}
 \setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
 
-\setmathfont{XITS Math}
+%\setmathfont{XITS Math}
 
 %%%%%%%%%%
 % Header %
@@ -86,6 +94,20 @@
   \vspace{-2\parskip}
 }
 
+\newcommand{\footer}[3]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node [rectangle, fill=fillheader, anchor=south, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.south){};
+    \node [anchor=center] (name) at (box) {%
+      \fontsize{28pt}{48pt}\color{header}%
+      {\thinfont #1}{\bodyfont  #2}
+    };
+    \node [anchor=north] at (name.south) {%
+      \fontsize{14pt}{24pt}\color{header}%
+      \thinfont #3%
+    };
+  \end{tikzpicture}
+}
+
 
 %%%%%%%%%%%%%
 % Structure %
@@ -101,7 +123,11 @@
         red\or%
         orange\or%
         green\or%
-        purple\else%
+        purple\or%
+        brown\or%
+        yellowgreen\or%
+        brickred\or%
+        sepia\else%
         headercolor\fi%
     } #1#2#3%
   }%
@@ -172,9 +198,10 @@
 % Bibliography %
 %%%%%%%%%%%%%%%%
 
-\RequirePackage[style=verbose, maxnames=99, sorting=ydnt]{biblatex}
+\RequirePackage[style=verbose, maxnames=99, sorting=ydnt, backend=biber]{biblatex}
 
 \DeclareFieldFormat[article]{title}{#1\par}
+\DeclareFieldFormat[book]{title}{#1\par}
 \DeclareFieldFormat[inproceedings]{title}{#1\par}
 \DeclareFieldFormat[misc]{title}{#1\par}
 \DeclareFieldFormat[report]{title}{#1\par}
@@ -198,6 +225,76 @@
   }
   \par\vspace{0.3\baselineskip}
 }
+
+\DeclareBibliographyDriver{thesis}{%
+  \printfield{title}%
+  \par%
+  \newblock%
+  \printnames{author}%
+  \par
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{type}%
+    \setunit*{\addcomma\space}%
+    \printlist{publisher}%
+    \setunit*{\addcomma\space}%
+    \printfield{number}%
+    \setunit*{\space}%
+    \printfield{year}%
+    \newunit%
+  }
+  \par\vspace{0.3\baselineskip}
+}
+
+
+\DeclareBibliographyDriver{book}{%
+  \printfield{title}%
+  \newblock%
+  \printnames{author}%
+  \par%
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printlist{publisher}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
+    \setunit*{\addcomma\space}%
+    \printfield{year}%
+    \setunit{\addcomma\space}%
+    \printlist{location}%
+    \newunit%
+  }
+  \par\vspace{0.3\baselineskip}
+}
+
+\DeclareBibliographyDriver{inbook}{%
+  \printfield{chapter}%
+  \par%
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printnames{author}%
+    \setunit*{\addcomma\space}%
+    \printfield{year}%
+    \setunit{\addcomma\space}%
+    \printlist{location}%
+    \newunit%
+  }
+  \par%
+  \newblock%
+ {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{title}%
+    \setunit*{\addcomma\space}%
+    \printnames{editor}%
+    \setunit*{\space}%
+    \printlist{publisher}%
+    \newunit%
+  } 
+  \par\vspace{0.3\baselineskip}
+}
+
 
 \DeclareBibliographyDriver{inproceedings}{%
   \printfield{title}%
@@ -225,6 +322,8 @@
   \newblock%
   {%
     \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{type}%
+    \setunit*{\addcomma\space}%
     \printfield{booktitle}%
     \setunit*{\addcomma\space}%
     \printfield{note}%
@@ -249,8 +348,7 @@
     \setunit{\space}%
     \printfield{number}%
     \setunit{\addcomma\space}%
-    \printfield{year}%
-    \newunit%
+    \usebibmacro{institution+location+date}%
   }
   \par\vspace{0.3\baselineskip}
 }
@@ -283,3 +381,30 @@
 
 \RequirePackage[left=6.1cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
 \RequirePackage{hyperref}
+\hypersetup{colorlinks = true,urlcolor={darkgray}}
+
+
+%%%%%%%%%%%%%%
+% References %
+%%%%%%%%%%%%%%
+
+
+\newlength{\listdoubleitemmaincolumnwidth}
+\setlength{\listdoubleitemmaincolumnwidth}{5.5cm}%
+
+\newcommand{\cvref}[7]{%
+    {\bf#1}\newline% Name
+    {\addfontfeature{Color=lightgray}\itshape%
+    \ifthenelse{\equal{#2}{}}{}{#2\newline}% Department
+    \ifthenelse{\equal{#3}{}}{}{#3\newline}% Adresse
+    \ifthenelse{\equal{#4}{}}{}{#4\newline}% PLZ
+    \ifthenelse{\equal{#5}{}}{}{#5\newline}}% Land
+  	\ifthenelse{\equal{#6}{}}{}{\href{mailto:#6}{#6}\newline} %email
+	\ifthenelse{\equal{#7}{}}{}{#7}\\\vspace{.3\baselineskip}%Phone
+}
+
+\newcommand{\refrow}[2]{%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}{#1}\end{minipage}%
+    \hspace{2cm}%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}{#2}\end{minipage}\\%
+}

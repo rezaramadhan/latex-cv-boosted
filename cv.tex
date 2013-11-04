@@ -1,132 +1,287 @@
-%!TEX TS-program = xelatex
-\documentclass[]{friggeri-cv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Friggeri Resume/CV
+% XeLaTeX Template
+% Version 1.0 (5/5/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Adrien Friggeri (adrien@friggeri.net)
+% https://github.com/afriggeri/CV
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Important notes:
+% This template needs to be compiled with XeLaTeX and the bibliography, if used,
+% needs to be compiled with biber rather than bibtex.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[]{friggeri-cv} % Add 'print' as an option into the square bracket to remove colors from this template for printing
+
+\usepackage[backend=biber]{biblatex}
 \addbibresource{bibliography.bib}
 
+
 \begin{document}
-\header{adrien}{friggeri}
-       {social network analyst}
 
+\header{Jesper}{Dramsch}{Geophysics Student (MSc)} % Your name and current job title/field
 
-% In the aside, each new line forces a line break
-\begin{aside}
-  \section{about}
-    31 rue Smith
-    69002 Lyon
-    France
-    ~
-    \href{mailto:adrien@friggeri.net}{adrien@friggeri.net}
-    \href{http://friggeri.net}{http://friggeri.net}
-    \href{http://facebook.com/adrien}{fb://adrien}
-  \section{languages}
-    bilingual french/english
-    spanish \& italian notions
-  \section{programming}
-    {\color{red} $\varheartsuit$} JavaScript
-    (ES5, node.js)
-    Python, C, OCaml
-    CSS3 \& HTML5
+%----------------------------------------------------------------------------------------
+%	SIDEBAR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{aside} % In the aside, each new line forces a line break
+\section{contact}
+Von-Essen-Str. 121
+22081 Hamburg
+Germany
+~
++49 (0) 163 734 2207
+~
+\href{mailto:jesper@dramsch.net}{Jesper@Dramsch.net}
+\href{http://www.dramsch.net}{Dramsch.net}
+\href{http://de.linkedin.com/in/thegeophysicist/en}{LinkedIn}
+\section{languages}
+\begin{tabular}{rr}German & \thinfont C2 
+English& \thinfont C1
+Spanish& \thinfont B1
+French& \thinfont A2
+Italian& \thinfont A1
+Norwegian& \thinfont A1\end{tabular}
+\section{software}
+Promax \& SeismicUn*x
+Matlab, Python \& \LaTeX
+\section{geophysics}
+seismic interpolation
+sub-salt imaging
+fresnelzone imaging
+anisotropy
 \end{aside}
 
-\section{interests}
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
 
-complex networks, social networks, community detection, community structure,
-overlapping communities, information diffusion, viral marketing, social
-inference, recommendation, data mining
 
 \section{education}
 
 \begin{entrylist}
-  \entry
-    {since 2009}
-    {Ph.D. {\normalfont candidate in Computer Science}}
-    {DNET/INRIA, LIP/ÉNS de Lyon}
-    {\emph{A Quantified Theory of Social Cohesion.}}
-  \entry
-    {2007–2008}
-    {M.Sc. magna cum laude}
-    {IXXI, École Normale Supérieure de Lyon}
-    {Majoring in Computer Science\\
-    Specialization in Complex Systems}
-  \entry
-    {2006–2007}
-    {B.Sc. magna cum laude}
-    {École Normale Supérieure de Lyon}
-    {Majoring in Computer Science}
-  \entry
-    {2003–2006}
-    {Classes Préparatoires aux Grandes Écoles}
-    {Lycée Fénelon, Lycée Louis le Grand, Paris}
-    {Preparation for national competitive entrance exams to leading French ``grandes écoles'', specializing in mathematics and physics.}
-  \entry
-    {2003}
-    {French Baccalauréat S. with honors}
-    {Lycée Louis le Grand, Paris}
-    {Specialization in mathematics and physics}
+%------------------------------------------------
+\entry
+{2010--today}
+{Master {\normalfont of Science, Geophysics}}
+{University of Hamburg, Germany}
+{\emph{Pre-stack Data Enhancement for Subsalt Imaging using the Partial Common Reflection Surface Stack} \\ This thesis will explore the improvement in seismic images in sub salt regimes, exploiting the redundancy of information in the midpoint as well as offset domain based on a Fresnel zone limited traveltime surface.}
+%------------------------------------------------
+\entry
+{2007--2010}
+{Bachelor {\normalfont of Science, Geophysics/Oceanography}}
+{University of Hamburg, Germany}
+{\emph{Trace interpolation using Partial CRS-Stacks} \\ This thesis evaluated the partial CRS-stack algorithm by interpolating seismic gaps that were artificially introduced in a data set.}
+%------------------------------------------------
+\entry
+{2006--2007}
+{Junior {\normalfont Studies, Geophysics/Oceanography}}
+{University of Hamburg, Germany}
+{A program for talented high school students, granting early access to university courses.}
 \end{entrylist}
+
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
 
 \section{experience}
 
 \begin{entrylist}
-  \entry
-    {02–07 2009}
-    {LIP6/CNRS, Paris}
-    {Research Internship.}
-    {\emph{Visualization of complex networks.}}
-  \entry
-    {06–08 2008}
-    {ISCPIF/CNRS, Paris}
-    {Research Internship.}
-    {\emph{Diffusion in the Blogosphere. Happy Flu.}}
-  \entry
-    {06–08 2007}
-    {LIP6/CNRS, Paris}
-    {Research Internship.}
-    {\emph{Kernels in real world networks.}}
-  \entry
-    {07–08 2005}
-    {\href{http://www.kelkoo.com}{Kelkoo.com}}
-    {Summer job.}
-    {\emph{Creation of a keyword generator for Google Adwords.}}
-  \entry
-    {07–08 2004}
-    {\href{http://www.monsieurprix.com}{MonsieurPrix.com}}
-    {Summer job.}
-    {\emph{Development of an e-commerce product indexation spider.}}
+%------------------------------------------------
+\entry
+{2013 (6m)}
+{\href{http://www.uni-hamburg.de}{University of Hamburg}}
+{Hamburg, Germany}
+{\emph{Teaching Assistant -- Introduction to Geophysics} \\
+Teaching a complementary lecture to the main introduction to geophysics lecture BSc course.}
+%------------------------------------------------
+\entry
+{2012 (4m)}
+{\href{http://www.slb.com}{Schlumberger}}
+{Crawley, United Kingdom}
+{\emph{Intern -- Engineering Seismic Interpolation} \\
+Prototyping an automatic data-driven seismic interpolation method in MatLab.}
+%------------------------------------------------
+\entry
+{2011 (2m)}
+{\href{http://www.fugro.no/home/companies/fsi/downloads/fsi_oslo_company_profile}{Fugro Seismic Imaging}}
+{Oslo, Norway}
+{\emph{Intern -- R\&D Seismic Imaging} \\
+Comparison of different near offset trace interpolation algorithms (i.e. CRS) to improve Surface Related Multiple Elimination (SRME) in 2D.}
+%------------------------------------------------
+\entry
+{2010--2012}
+{\href{http://www.uni-hamburg.de}{University of Hamburg}}
+{Hamburg, Germany}
+{\emph{Student Assistant -- Applied Seismics} \\
+Assessing the accuracy of partial Common Reflection Surface (CRS) stacks for trace interpolation. Writing a primer on using the CRS software package.}
+%------------------------------------------------
+\entry
+{2009 (3d)}
+{FS Alkor}
+{AL 339}
+{\emph{University field work}\\
+Including seismics, gravity, geomagnetics and echo-sounding.}
+%------------------------------------------------
+\entry
+{2007 (2w)}
+{\href{http://www.gfz-potsdam.de}{German Research Centre for Geosciences}}
+{Potsdam, Germany}
+{\emph{Intern -- Geophysical Deep Sounding} \\
+Two week introduction to geophysical imaging depth imaging.}
+%------------------------------------------------
 \end{entrylist}
 
-\section{applications}
+%----------------------------------------------------------------------------------------
+%	AWARDS SECTION
+%----------------------------------------------------------------------------------------
+
+\section{awards}
 
 \begin{entrylist}
-  \entry
-    {2012}
-    {Who did I forget ?}
-    {\href{http://whodidiforget.com}{whodidiforget.com}}
-    {Guest list recommendation for Facebook events based on friends already attending the event.}
-  \entry
-    {2011}
-    {Fellows}
-    {\href{http://fellows-exp.com}{fellows-exp.com}}
-    {Automatic community detection among Facebook Friends in order to validate the \emph{cohesion} measure, creation of friend lists.}
-  \entry
-    {2008}
-    {Happy Flu}
-    {\href{http://happyflu.com}{happyflu.com}}
-    {Experiment aimed to measure viral spreading of content across the blogosphere.}
+%------------------------------------------------
+\entry
+{2012}
+{Famelab Hamburg}
+{\href{http://www.famelab-germany.de}{British Council}}
+{2nd Prize for a very short public presentation on seismic imaging.}
+%------------------------------------------------
+\entry
+{2011}
+{\href{http://www.famelab-germany.de}{British Council}}
+{\href{http://www.famelab-germany.de}{British Council}}
+{1st Prize for a very short public presentation on seismology and geohazards.}
+%------------------------------------------------
 \end{entrylist}
+%----------------------------------------------------------------------------------------
+%	COMMUNICATION SKILLS SECTION
+%----------------------------------------------------------------------------------------
+
+\section{communication skills}
+
+\begin{entrylist}
+%------------------------------------------------
+\entry
+{2011-2012}
+{Short Oral Presentation}
+{\href{http://www.famelab-germany.de}{Famelab Germany}}
+{Very short public presentations about research for my thesis.}
+%------------------------------------------------
+\entry
+{2011}
+{Poster Presentation}
+{\href{http://earthdoc.eage.org/publication/publicationdetails/?publication=50683}{73\textsuperscript{rd} EAGE Vienna}}
+{Poster presentation of the research conducted for my Bachelor thesis on trace interpolation.}
+%------------------------------------------------
+\entry
+{2011}
+{Technical Presentation}
+{\href{http:/www.wit-consortium.de}{Wave Inversion Technology Meeting}}
+{Technical presentation about my work involving partial CRS stacks and seismic interpolation.}
+%------------------------------------------------
+\entry
+{2000--2007}
+{Oral Presentation}
+{\href{http://www.jugend-forscht.de/}{Jugend foscht}}
+{Presentations on different self-chosen research projects including a written report in the geoscience section. "Jugend forscht" is the biggest youth science and technology competition in Europe.}
+%------------------------------------------------
+\end{entrylist}
+
+%----------------------------------------------------------------------------------------
+%	INTERESTS SECTION
+%----------------------------------------------------------------------------------------
+\section{voluntary activities}
+\begin{entrylist}
+\entry
+{2011}
+{Vice President}
+{\href{http://www.geophysikstudenten.de/studentisches/gap}{Geophysical Activity Programme e.V.}}
+{Major German geophysical student meeting and networking event. Including 10 major sponsors, 150 student participants, six organisation teams, several helping hands and a five figure budget.}
+\entry
+{2008--2011}
+{Student representative}
+{\href{http://geophysics.zmaw.de/index.php?id=fs}{University of Hamburg}}
+{Involved in organising networking events, first semester introductory events and restructuring the representative organisation.}
+\entry
+{2007--today}
+{Blood Donor}
+{\href{http://www.blutspendediensthamburg.de}{Blutspendedienst Hamburg}}
+{Consistent blood and plasma donor. \emph{(Over 25 blood and 20 plasma donations.)}}
+\end{entrylist}
+\section{interests}
+
+\textbf{professional:} earth science, geophysics, geology, big data, seismic imaging, interpolation, science communication, data security, anisotropy \textbf{personal:} running, weight lifting, rock climbing, drums, saxophone, computer, role-playing games, strategic boardgames, organizing social events
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATIONS SECTION
+%----------------------------------------------------------------------------------------
 
 \section{publications}
 
+\printbibsection{article}{article in peer-reviewed journal} % Print all articles from the bibliography
 
-\printbibsection{article}{article in peer-reviewed journal}
+\printbibsection{book}{books} % Print all books from the bibliography
+\printbibsection{inbook}{book chapters} % Print all books chapters from the bibliography
+
 \begin{refsection}
-  \nocite{*}
-  \printbibliography[sorting=chronological, type=inproceedings, title={international peer-reviewed conferences/proceedings}, notkeyword={france}, heading=subbibliography]
+\nocite{*}
+\printbibliography[type=inproceedings, title={international peer-reviewed conferences/proceedings}, heading=subbibliography]
 \end{refsection}
-\begin{refsection}
-  \nocite{*}
-  \printbibliography[sorting=chronological, type=inproceedings, title={local peer-reviewed conferences/proceedings}, keyword={france}, heading=subbibliography]
-\end{refsection}
-\printbibsection{misc}{other publications}
-\printbibsection{report}{research reports}
+\clearpage
+\printbibsection{report}{research reports} % Print all research reports from the bibliography
+
+\printbibsection{thesis}{theses} % Print all theses from the bibliography
+
+\printbibsection{misc}{other publications} % Print all miscellaneous entries from the bibliography
+
+%----------------------------------------------------------------------------------------
+
+\section{references}
+
+\refrow{\cvref{Dirk Gajewski}%
+				{Department of Applied Seismics}%
+				{Bundesstra\ss e 55}%
+				{20146 Hamburg}%
+				{Germany}%
+				{dirk.gajewski@zmaw.de}%
+				{+49 (0) 40 42838 2975}%
+		}{%
+		\cvref{Thomas Elboth}%
+				{R\&D Project Manager at CGG}%
+				{O.H. Bangs vei 70}%
+				{1322 H\o vik, Oslo}%
+				{Norway}%
+				{thomas.elboth@cgg.com}%
+				{+47 91 71 7680}%
+		}
+\refrow{\cvref{Claudia Vanelle}%
+				{Department of Applied Seismics}%
+				{Bundesstra\ss e 55}%
+				{20146 Hamburg}%
+				{Germany}%
+				{claudia.vanelle@zmaw.de}%
+				{+49 (0) 40 42838 5055}%
+		}{%
+		\cvref{Thomas Elboth}%
+				{R\&D Project Manager at CGG}%
+				{O.H. Bangs vei 70}%
+				{1322 H\o vik, Oslo}%
+				{Norway}%
+				{thomas.elboth@cgg.com}%
+				{+47 91 71 7680}%
+		}
+
+
+\hypersetup{urlcolor={lightgray}}
+\footer{Jesper}{Dramsch}{\href{http://www.dramsch.net}{The Way of the Geophysicist}}
 
 \end{document}
