@@ -106,7 +106,6 @@
 }
 
 
-
 %%%%%%%%%%%%%
 % Structure %
 %%%%%%%%%%%%%
@@ -196,7 +195,7 @@
 % Bibliography %
 %%%%%%%%%%%%%%%%
 
-\RequirePackage[style=verbose, maxnames=99, sorting=ydnt]{biblatex}
+\RequirePackage[style=verbose, maxnames=99, sorting=ydnt, backend=biber]{biblatex}
 
 \DeclareFieldFormat[article]{title}{#1\par}
 \DeclareFieldFormat[book]{title}{#1\par}
@@ -224,6 +223,28 @@
   \par\vspace{0.3\baselineskip}
 }
 
+\DeclareBibliographyDriver{thesis}{%
+  \printfield{title}%
+  \par%
+  \newblock%
+  \printnames{author}%
+  \par
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{type}%
+    \setunit*{\addcomma\space}%
+    \printlist{publisher}%
+    \setunit*{\addcomma\space}%
+    \printfield{number}%
+    \setunit*{\space}%
+    \printfield{year}%
+    \newunit%
+  }
+  \par\vspace{0.3\baselineskip}
+}
+
+
 \DeclareBibliographyDriver{book}{%
   \printfield{title}%
   \newblock%
@@ -241,6 +262,33 @@
     \printlist{location}%
     \newunit%
   }
+  \par\vspace{0.3\baselineskip}
+}
+
+\DeclareBibliographyDriver{inbook}{%
+  \printfield{chapter}%
+  \par%
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printnames{author}%
+    \setunit*{\addcomma\space}%
+    \printfield{year}%
+    \setunit{\addcomma\space}%
+    \printlist{location}%
+    \newunit%
+  }
+  \par%
+  \newblock%
+ {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{title}%
+    \setunit*{\addcomma\space}%
+    \printnames{editor}%
+    \setunit*{\space}%
+    \printlist{publisher}%
+    \newunit%
+  } 
   \par\vspace{0.3\baselineskip}
 }
 
@@ -271,6 +319,8 @@
   \newblock%
   {%
     \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{type}%
+    \setunit*{\addcomma\space}%
     \printfield{booktitle}%
     \setunit*{\addcomma\space}%
     \printfield{note}%
@@ -295,8 +345,7 @@
     \setunit{\space}%
     \printfield{number}%
     \setunit{\addcomma\space}%
-    \printfield{year}%
-    \newunit%
+    \usebibmacro{institution+location+date}%
   }
   \par\vspace{0.3\baselineskip}
 }
@@ -320,6 +369,7 @@
   \sort[direction=descending]{\field{year}}
   \sort[direction=descending]{\field{month}}
 }
+
 
 
 
