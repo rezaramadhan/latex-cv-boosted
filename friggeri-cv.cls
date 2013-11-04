@@ -122,7 +122,10 @@
         orange\or%
         green\or%
         purple\or%
-        brown\else%
+        brown\or%
+        yellowgreen\or%
+        brickred\or%
+        sepia\else%
         headercolor\fi%
     } #1#2#3%
   }%
