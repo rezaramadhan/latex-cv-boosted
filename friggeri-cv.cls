@@ -64,7 +64,7 @@
 %\setmathfont{XITS Math}
 
 %%%%%%%%%%
-% Header %
+% Header &  Footer %
 %%%%%%%%%%
 
 \RequirePackage{tikz}
@@ -90,6 +90,21 @@
   \vspace{2.5cm}
   \vspace{-2\parskip}
 }
+
+\newcommand{\footer}[3]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node [rectangle, fill=fillheader, anchor=south, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.south){};
+    \node [anchor=center] (name) at (box) {%
+      \fontsize{28pt}{48pt}\color{header}%
+      {\thinfont #1}{\bodyfont  #2}
+    };
+    \node [anchor=north] at (name.south) {%
+      \fontsize{14pt}{24pt}\color{header}%
+      \thinfont #3%
+    };
+  \end{tikzpicture}
+}
+
 
 
 %%%%%%%%%%%%%
