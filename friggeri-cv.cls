@@ -329,3 +329,28 @@
 
 \RequirePackage[left=6.1cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
 \RequirePackage{hyperref}
+
+%%%%%%%%%%%%%%
+% References %
+%%%%%%%%%%%%%%
+
+
+\newlength{\listdoubleitemmaincolumnwidth}
+\setlength{\listdoubleitemmaincolumnwidth}{5.5cm}%
+
+\newcommand{\cvref}[7]{%
+    {\bf#1}\newline% Name
+    {\addfontfeature{Color=lightgray}\itshape%
+    \ifthenelse{\equal{#2}{}}{}{#2\newline}% Department
+    \ifthenelse{\equal{#3}{}}{}{#3\newline}% Adresse
+    \ifthenelse{\equal{#4}{}}{}{#4\newline}% PLZ
+    \ifthenelse{\equal{#5}{}}{}{#5\newline}}% Land
+  	\ifthenelse{\equal{#6}{}}{}{\href{mailto:#6}{#6}\newline} %email
+	\ifthenelse{\equal{#7}{}}{}{#7}\\\vspace{.3\baselineskip}%Phone
+}
+
+\newcommand{\refrow}[2]{%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}{#1}\end{minipage}%
+    \hspace{2cm}%
+    \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}{#2}\end{minipage}\\%
+}
