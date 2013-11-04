@@ -26,6 +26,10 @@
 \definecolor{purple}{HTML}{D3A4F9}
 \definecolor{red}{HTML}{FB4485}
 \definecolor{blue}{HTML}{6CE0F1}
+\definecolor{yellowgreen}{HTML}{13B4CD}
+\definecolor{brickred}{HTML}{8913CD}
+\definecolor{sepia}{HTML}{CD8913}
+
 
 \ifdefined\@cv@print
   \colorlet{green}{gray}
