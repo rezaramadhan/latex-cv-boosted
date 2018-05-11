@@ -1,10 +1,122 @@
 \ProvidesClass{friggeri-cv}[2012/04/30 CV class]
 \NeedsTeXFormat{LaTeX2e}
 
+\RequirePackage[quiet]{fontspec}
+\RequirePackage[math-style=TeX]{unicode-math}
+\RequirePackage{fontawesome}
+
 \DeclareOption{print}{\def\@cv@print{}}
 \DeclareOption*{%
   \PassOptionsToClass{\CurrentOption}{article}%
 }
+
+\DeclareOption{heros}{
+\newfontfamily\bodyfont
+[Path=fonts/Heros/,BoldFont=texgyreheros-bold.otf,
+ItalicFont=texgyreheros-italic.otf,
+BoldItalicFont=texgyreheros-bolditalic.otf]
+{texgyreheros-regular.otf}
+\newfontfamily\thinfont[Path=fonts/Heros/]{Lato-Light.ttf}
+\newfontfamily\headingfont[Path=fonts/Heros/]{texgyreheros-bold.otf}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[Path=fonts/Heros/, Mapping=tex-text, Color=textcolor,
+BoldFont=texgyreheros-bold.otf,
+ItalicFont=texgyreheros-italic.otf,
+BoldItalicFont=texgyreheros-bolditalic.otf
+]
+{texgyreheros-regular.otf}
+
+\setmathfont[Path=fonts/Heros/]{texgyreheros-regular.otf}
+}
+
+\DeclareOption{roboto}{
+\newfontfamily\bodyfont
+[Path=fonts/Roboto/,BoldFont=Roboto-Bold.ttf,
+ItalicFont=Roboto-Italic.ttf,
+BoldItalicFont=Roboto-BoldItalic.ttf]
+{Roboto-Regular.ttf}
+\newfontfamily\thinfont[Path=fonts/Roboto/]{Roboto-Light.ttf}
+\newfontfamily\headingfont[Path=fonts/Roboto/]{Roboto-Bold.ttf}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[Path=fonts/Roboto/, Mapping=tex-text, Color=textcolor,
+BoldFont=Roboto-Bold.ttf,
+ItalicFont=Roboto-Italic.ttf,
+BoldItalicFont=Roboto-BoldItalic.ttf
+]
+{Roboto-Regular.ttf}
+
+\setmathfont[Path=fonts/Roboto/]{Roboto-Regular.ttf}
+}
+
+\DeclareOption{alegreya}{
+\newfontfamily\bodyfont
+[Path=fonts/Alegreya/,BoldFont=AlegreyaSans-Bold.ttf,
+ItalicFont=AlegreyaSans-Italic.ttf,
+BoldItalicFont=AlegreyaSans-BoldItalic.ttf]
+{AlegreyaSans-Regular.ttf}
+\newfontfamily\thinfont[Path=fonts/Alegreya/]{AlegreyaSans-Light.ttf}
+\newfontfamily\headingfont[Path=fonts/Alegreya/]{AlegreyaSans-Bold.ttf}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[Path=fonts/Alegreya/, Mapping=tex-text, Color=textcolor,
+BoldFont=AlegreyaSans-Bold.ttf,
+ItalicFont=AlegreyaSans-Italic.ttf,
+BoldItalicFont=AlegreyaSans-BoldItalic.ttf
+]
+{AlegreyaSans-Regular.ttf}
+
+\setmathfont[Path=fonts/Alegreya/]{AlegreyaSans-Regular.ttf}
+}
+
+\DeclareOption{merriweather}{
+\newfontfamily\bodyfont
+[Path=fonts/Merriweather/,BoldFont=MerriweatherSans-Bold.ttf,
+ItalicFont=MerriweatherSans-Italic.ttf,
+BoldItalicFont=MerriweatherSans-BoldItalic.ttf]
+{MerriweatherSans-Regular.ttf}
+\newfontfamily\thinfont[Path=fonts/Merriweather/]{MerriweatherSans-Light.ttf}
+\newfontfamily\headingfont[Path=fonts/Merriweather/]{MerriweatherSans-Bold.ttf}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[Path=fonts/Merriweather/, Mapping=tex-text, Color=textcolor,
+BoldFont=MerriweatherSans-Bold.ttf,
+ItalicFont=MerriweatherSans-Italic.ttf,
+BoldItalicFont=MerriweatherSans-BoldItalic.ttf
+]
+{MerriweatherSans-Regular.ttf}
+
+\setmathfont[Path=fonts/Merriweather/]{MerriweatherSans-Regular.ttf}
+}
+
+\DeclareOption{nunito}{
+\newfontfamily\bodyfont
+[Path=fonts/Nunito/,BoldFont=Nunito-Bold.ttf,
+ItalicFont=Nunito-Italic.ttf,
+BoldItalicFont=Nunito-BoldItalic.ttf]
+{Nunito-Regular.ttf}
+\newfontfamily\thinfont[Path=fonts/Nunito/]{Nunito-Light.ttf}
+\newfontfamily\headingfont[Path=fonts/Nunito/]{Nunito-Bold.ttf}
+
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[Path=fonts/Nunito/, Mapping=tex-text, Color=textcolor,
+BoldFont=Nunito-Bold.ttf,
+ItalicFont=Nunito-Italic.ttf,
+BoldItalicFont=Nunito-BoldItalic.ttf
+]
+{Nunito-Regular.ttf}
+
+\setmathfont[Path=fonts/Nunito/]{Nunito-Regular.ttf}
+}
+
+\ExecuteOptions{heros}
+
 \ProcessOptions\relax
 \LoadClass{article}
 
@@ -21,23 +133,26 @@
 \definecolor{gray}{HTML}{4D4D4D}
 \definecolor{lightgray}{HTML}{999999}
 
-\definecolor{green}{HTML}{C2E15F}
-\definecolor{orange}{HTML}{FDA333}
-\definecolor{purple}{HTML}{D3A4F9}
-\definecolor{red}{HTML}{FB4485}
-\definecolor{blue}{HTML}{6CE0F1}
-\definecolor{yellowgreen}{HTML}{13B4CD}
-\definecolor{brickred}{HTML}{8913CD}
-\definecolor{sepia}{HTML}{CD8913}
-
+\definecolor{friggerigreen}{HTML}{C2E15F}
+\definecolor{friggeriorange}{HTML}{FDA333}
+\definecolor{friggeripurple}{HTML}{D3A4F9}
+\definecolor{friggerired}{HTML}{FB4485}
+\definecolor{friggeriblue}{HTML}{6CE0F1}
+\definecolor{friggeriyellowgreen}{HTML}{13B4CD}
+\definecolor{friggeribrickred}{HTML}{8913CD}
+\definecolor{friggerisepia}{HTML}{CD8913}
+\definecolor{friggeribrown}{HTML}{A52A2A}
 
 \ifdefined\@cv@print
-  \colorlet{green}{gray}
-  \colorlet{orange}{gray}
-  \colorlet{purple}{gray}
-  \colorlet{brown}{gray}
-  \colorlet{red}{gray}
-  \colorlet{blue}{gray}
+  \colorlet{friggerigreen}{gray}
+  \colorlet{friggeriorange}{gray}
+  \colorlet{friggeripurple}{gray}
+  \colorlet{friggeribrown}{gray}
+  \colorlet{friggerired}{gray}
+  \colorlet{friggeriblue}{gray}
+  \colorlet{friggeriyellowgreen}{gray}
+  \colorlet{friggeribrickred}{gray}
+  \colorlet{friggerisepia}{gray}
   \colorlet{fillheader}{white}
   \colorlet{header}{gray}
 \else
@@ -47,24 +162,52 @@
 \colorlet{textcolor}{gray}
 \colorlet{headercolor}{gray}
 
+\def\colorPallete{{"friggeriblue","friggerired","friggeriorange","friggerigreen","friggeripurple","friggeribrown","friggeriyellowgreen","friggeribrickred"}}
+
+
+
 %%%%%%%%%
 % Fonts %
 %%%%%%%%%
 
-\RequirePackage[quiet]{fontspec}
-\RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
+% \RequirePackage[quiet]{fontspec}
+% \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
+% 
+% \newfontfamily\bodyfont[]{Helvetica Neue}
+% \newfontfamily\thinfont[]{Helvetica Neue UltraLight}
+% \newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
+% 
+% \defaultfontfeatures{Mapping=tex-text}
+% \setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
+% 
+% \setmathfont{XITS Math}
 
-\newfontfamily\bodyfont[]{Helvetica Neue}
-\newfontfamily\thinfont[]{Helvetica Neue UltraLight}
-\newfontfamily\headingfont[]{Helvetica Neue Condensed Bold}
+%%% modified by Karol Kozioł for ShareLaTex use
+%\RequirePackage[quiet]{fontspec}
+%\RequirePackage[math-style=TeX]{unicode-math}
 
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont[Mapping=tex-text, Color=textcolor]{Helvetica Neue Light}
+%\newfontfamily\bodyfont
+%[BoldFont=texgyreheros-bold.otf,
+%ItalicFont=texgyreheros-italic.otf,
+%BoldItalicFont=texgyreheros-bolditalic.otf]
+%{texgyreheros-regular.otf}
+%\newfontfamily\thinfont[]{Lato-Light.ttf}
+%\newfontfamily\headingfont[]{texgyreheros-bold.otf}
 
-%\setmathfont{XITS Math}
+%\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont
+%[Mapping=tex-text, Color=textcolor,
+%BoldFont=texgyreheros-bold.otf,
+%ItalicFont=texgyreheros-italic.otf,
+%BoldItalicFont=texgyreheros-bolditalic.otf
+%]
+%{texgyreheros-regular.otf}
+
+%\setmathfont{texgyreheros-regular.otf}
+%%%
 
 %%%%%%%%%%
-% Header &  Footer %
+% Header %
 %%%%%%%%%%
 
 \RequirePackage{tikz}
@@ -91,20 +234,6 @@
   \vspace{-2\parskip}
 }
 
-\newcommand{\footer}[3]{%
-  \begin{tikzpicture}[remember picture,overlay]
-    \node [rectangle, fill=fillheader, anchor=south, minimum width=\paperwidth, minimum height=4cm] (box) at (current page.south){};
-    \node [anchor=center] (name) at (box) {%
-      \fontsize{28pt}{48pt}\color{header}%
-      {\thinfont #1}{\bodyfont  #2}
-    };
-    \node [anchor=north] at (name.south) {%
-      \fontsize{14pt}{24pt}\color{header}%
-      \thinfont #3%
-    };
-  \end{tikzpicture}
-}
-
 
 %%%%%%%%%%%%%
 % Structure %
@@ -116,15 +245,15 @@
   {%
     \color{%
       \ifcase\value{colorCounter}%
-        blue\or%
-        red\or%
-        orange\or%
-        green\or%
-        purple\or%
-        brown\or%
-        yellowgreen\or%
-        brickred\or%
-        sepia\else%
+        friggeriblue\or%
+        friggerired\or%
+        friggeriorange\or%
+        friggerigreen\or%
+        friggeripurple\or%
+        friggeribrown\or%
+        friggeriyellowgreen\or%
+        friggeribrickred\or%
+        friggerisepia\else%
         headercolor\fi%
     } #1#2#3%
   }%
@@ -140,9 +269,11 @@
   \par\vspace{\parskip}
 }
 
-\renewcommand{\subsection}[2]{
+\renewcommand{\subsection}[1]{
   \par\vspace{.5\parskip}%
-  \Large\headingfont\color{headercolor} #2%
+  {%
+  \large\headingfont\color{headercolor} #1%
+  }
   \par\vspace{.25\parskip}%
 }
 
@@ -152,7 +283,6 @@
 %%%%%%%%%%%%%%%%%%%%
 % List environment %
 %%%%%%%%%%%%%%%%%%%%
-
 \setlength{\tabcolsep}{0pt}
 \newenvironment{entrylist}{%
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
@@ -167,7 +297,15 @@
     {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
     #4\vspace{\parsep}%
   }\\}
-
+\newcommand{\courseentry}[6]{%
+  #1&\parbox[t]{11.8cm}{%
+    \textbf{#2}%
+    \hfill%
+    {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
+    #4\vspace{\parsep}}\\%
+  \multicolumn{1}{r}{\footnotesize Thesis}&\parbox[t]{11.8cm}{\emph{#5}}\\%
+  \multicolumn{1}{r}{\footnotesize Coursework}&\parbox[t]{11.8cm}{{\footnotesize #6}%
+  \vspace{\parsep}}\\}
 
 %%%%%%%%%%%%%%
 % Side block %
@@ -195,10 +333,9 @@
 % Bibliography %
 %%%%%%%%%%%%%%%%
 
-\RequirePackage[style=verbose, maxnames=99, sorting=ydnt, backend=biber]{biblatex}
+\RequirePackage[style=verbose, maxnames=99, sorting=ydnt]{biblatex}
 
 \DeclareFieldFormat[article]{title}{#1\par}
-\DeclareFieldFormat[book]{title}{#1\par}
 \DeclareFieldFormat[inproceedings]{title}{#1\par}
 \DeclareFieldFormat[misc]{title}{#1\par}
 \DeclareFieldFormat[report]{title}{#1\par}
@@ -222,76 +359,6 @@
   }
   \par\vspace{0.3\baselineskip}
 }
-
-\DeclareBibliographyDriver{thesis}{%
-  \printfield{title}%
-  \par%
-  \newblock%
-  \printnames{author}%
-  \par
-  \newblock%
-  {%
-    \footnotesize\addfontfeature{Color=lightgray}\itshape%
-    \printfield{type}%
-    \setunit*{\addcomma\space}%
-    \printlist{publisher}%
-    \setunit*{\addcomma\space}%
-    \printfield{number}%
-    \setunit*{\space}%
-    \printfield{year}%
-    \newunit%
-  }
-  \par\vspace{0.3\baselineskip}
-}
-
-
-\DeclareBibliographyDriver{book}{%
-  \printfield{title}%
-  \newblock%
-  \printnames{author}%
-  \par%
-  \newblock%
-  {%
-    \footnotesize\addfontfeature{Color=lightgray}\itshape%
-    \printlist{publisher}%
-    \setunit*{\addcomma\space}%
-    \printfield{note}%
-    \setunit*{\addcomma\space}%
-    \printfield{year}%
-    \setunit{\addcomma\space}%
-    \printlist{location}%
-    \newunit%
-  }
-  \par\vspace{0.3\baselineskip}
-}
-
-\DeclareBibliographyDriver{inbook}{%
-  \printfield{chapter}%
-  \par%
-  \newblock%
-  {%
-    \footnotesize\addfontfeature{Color=lightgray}\itshape%
-    \printnames{author}%
-    \setunit*{\addcomma\space}%
-    \printfield{year}%
-    \setunit{\addcomma\space}%
-    \printlist{location}%
-    \newunit%
-  }
-  \par%
-  \newblock%
- {%
-    \footnotesize\addfontfeature{Color=lightgray}\itshape%
-    \printfield{title}%
-    \setunit*{\addcomma\space}%
-    \printnames{editor}%
-    \setunit*{\space}%
-    \printlist{publisher}%
-    \newunit%
-  } 
-  \par\vspace{0.3\baselineskip}
-}
-
 
 \DeclareBibliographyDriver{inproceedings}{%
   \printfield{title}%
@@ -319,8 +386,6 @@
   \newblock%
   {%
     \footnotesize\addfontfeature{Color=lightgray}\itshape%
-    \printfield{type}%
-    \setunit*{\addcomma\space}%
     \printfield{booktitle}%
     \setunit*{\addcomma\space}%
     \printfield{note}%
@@ -345,14 +410,15 @@
     \setunit{\space}%
     \printfield{number}%
     \setunit{\addcomma\space}%
-    \usebibmacro{institution+location+date}%
+    \printfield{year}%
+    \newunit%
   }
   \par\vspace{0.3\baselineskip}
 }
 
 \DeclareNameFormat{author}{%
   \small\addfontfeature{Color=lightgray}%
-  \ifblank{#3}{}{#3\space}#1%
+  \ifblank{##3}{}{##3\space}#1%
   \ifthenelse{\value{listcount}<\value{liststop}}
     {\addcomma\space}
     {}%
@@ -371,20 +437,9 @@
 }
 
 
-
-
-%%%%%%%%%%%%%%%%
-% Other tweaks %
-%%%%%%%%%%%%%%%%
-
-\RequirePackage[left=6.1cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
-\RequirePackage{hyperref}
-\hypersetup{colorlinks = true,urlcolor={darkgray}}
-
 %%%%%%%%%%%%%%
 % References %
 %%%%%%%%%%%%%%
-
 
 \newlength{\listdoubleitemmaincolumnwidth}
 \setlength{\listdoubleitemmaincolumnwidth}{5.5cm}%
@@ -405,3 +460,27 @@
     \hspace{2cm}%
     \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}{#2}\end{minipage}\\%
 }
+
+%%%%%%%%%%%%%%
+% Points %
+%%%%%%%%%%%%%%
+
+\usetikzlibrary{shapes}
+\newcommand\score[2]{
+\pgfmathsetmacro\pgfxa{#1+1}
+\tikzstyle{scorestars}=[circle, draw,inner sep=2.25pt,anchor=south]
+  \begin{tikzpicture}[baseline]
+    \foreach \i in {1,...,5} {
+    \pgfmathparse{(\i<=#1?\colorPallete[5-#1]:"white")}
+    \edef\starcolor{\pgfmathresult}
+    \draw (\i*1.75ex,0) node[name=star\i,scorestars,fill=\starcolor]  {};
+   }
+  \end{tikzpicture}
+}
+
+%%%%%%%%%%%%%%%%
+% Other tweaks %
+%%%%%%%%%%%%%%%%
+
+\RequirePackage[left=6.1cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
+\RequirePackage{hyperref}
