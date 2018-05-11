@@ -15,11 +15,24 @@ Uses TikZ for the header and some pretty tricks, XeTeX and fontspec to use fonts
 * Multiple Fonts
 * Student-Friendly
 
+# Options
+Several class options are available:
+
+## Style
+* `a4paper`: Changes layout to A4.
+* `print`: Changes to black and white, removes header to minimize ink usage.
+
+## Fonts
+* `heros`: Standard TexGyre Heros font (introduced as alternative to Helvetica Neue by Sharelatex)
+* `alegreya`: [See Example](https://fonts.google.com/specimen/Alegreya+Sans) Alegreya was chosen as one of 53 "Fonts of the Decade" at the ATypI Letter2 competition in September 2011, and one of the top 14 text type systems.
+* `merriweather`: [See Example](https://fonts.google.com/specimen/Merriweather+Sans) Merriweather Sans is traditional in feeling despite the modern shapes it has adopted for screens.
+* `nunito`: [See Example](https://fonts.google.com/specimen/Nunito) Nunito is a well balanced sans serif typeface superfamily
+* `roboto`: [See Example](https://fonts.google.com/specimen/Roboto) Roboto has a dual nature. It has a mechanical skeleton and the forms are largely geometric. At the same time, the font features friendly and open curves. 
+
 # Usage
 Replace all things that need replacing.
 
 Adding new things is easy:
- 
 Check Dante for [New Icons in Fontawesome](ftp://ftp.dante.de/tex-archive/fonts/fontawesome/doc/fontawesome.pdf)
 
 ## \score{n}
