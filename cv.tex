@@ -19,7 +19,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[]{friggeri-cv} % Add 'print' as an option into the square bracket to remove colors from this template for printing
+\documentclass[heros]{friggeri-cv} % Add 'print' as an option into the square bracket to remove colors from this template for printing, also a choice of fonts is available [alegreya, heros, merriweather, nunito, roboto]
 
 \addbibresource{bibliography.bib} % Specify the bibliography file to include publications
 
@@ -33,21 +33,23 @@
 
 \begin{aside} % In the aside, each new line forces a line break
 \section{contact}
-123 Broadway
+123 Broadway \faMapMarker
 City, State 12345
 Country
 ~
-+0 (000) 111 1111
-+0 (000) 111 1112
++0 (000) 111 1111 \faPhone
++0 (000) 111 1112 \faFax
 ~
-\href{mailto:john@smith.com}{john@smith.com}
-\href{http://www.smith.com}{http://www.smith.com}
-\href{http://facebook.com/johnsmith}{fb://jsmith}
+\href{mailto:john@smith.com}{john@smith.com \faEnvelope}
+\href{http://www.smith.com}{http://www.smith.com~\faBookmark}
+\href{http://facebook.com/johnsmith}{fb://jsmith \faFacebookSquare}
 \section{languages}
-english mother tongue
-spanish \& italian fluency
+\begin{tabular}{r r}
+english&\score{5}
+spanish&\score{4}
+italian&\score{2}\end{tabular}
 \section{programming}
-{\color{red} $\varheartsuit$} JavaScript
+JavaScript
 Python, C++, PHP
 CSS3 \& HTML5
 \end{aside}
@@ -60,17 +62,13 @@ CSS3 \& HTML5
 
 \begin{entrylist}
 %------------------------------------------------
-\entry
+\courseentry
 {2011--2012}
-{Masters {\normalfont of Commerce}}
+{Bachelor {\normalfont of Commerce}}
 {The University of California, Berkeley}
-{\emph{Money Is The Root Of All Evil -- Or Is It?} \\ This thesis explored the idea that money has been the cause of untold anguish and suffering in the world. I found that it has, in fact, not.}
-%------------------------------------------------
-\entry
-{2007--2008}
-{Bachelor {\normalfont of Business Studies}}
-{The University of California, Berkeley}
-{Specialization in Commerce}
+{Money Is The Root Of All Evil -- Or Is It?}
+{This thesis explored the idea that money has been the cause of untold anguish and suffering in the world. I found that it has, in fact, not.}
+{Business for Business Gurus, Money 101}
 %------------------------------------------------
 \end{entrylist}
 
@@ -111,12 +109,6 @@ Detailed achievements:
 {\emph{Summer Intern} \\
 Rated "truly distinctive" for Analytical Skills and Teamwork.}
 %------------------------------------------------
-\entry
-{2008-2009}
-{Buy More}
-{Burbank, California}
-{\emph{Computer Repair Specialist} \\
-Worked in the Nerd Herd and helped to solve computer problems by asking customers to turn their computers off and on again.}
 %------------------------------------------------
 \end{entrylist}
 
@@ -135,6 +127,7 @@ Worked in the Nerd Herd and helped to solve computer problems by asking customer
 {Awarded to the top student in their final year of a Bachelors degree.}
 %------------------------------------------------
 \end{entrylist}
+
 
 %----------------------------------------------------------------------------------------
 %	COMMUNICATION SKILLS SECTION
@@ -238,9 +231,6 @@ Worked in the Nerd Herd and helped to solve computer problems by asking customer
 		}
 
 
-
-\hypersetup{urlcolor={lightgray}}
-\footer{John}{Smith}{I trade stuff} 
 
 
 \end{document}
