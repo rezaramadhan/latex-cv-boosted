@@ -2,9 +2,11 @@ sudo: required
 dist: trusty
 services:
   - docker
-
+install:
+  - docker run -v $PWD:/doc/  -t -i thomasweise/texlive
+  - sudo apt-get install texlive-bibtex-extra biber
 script:
-  - docker run -v $PWD:/doc/  -t -i thomasweise/texlive make pdf clean
+  - make pdf clean
 
 deploy:
   provider: script
@@ -15,3 +17,5 @@ deploy:
   script:
   - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-latest.pdf
   - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-${TRAVIS_JOB_NUMBER}.pdf
+after_script:
+  - exit
