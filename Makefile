@@ -8,7 +8,7 @@ default: pdf clean
 
 # Default variables which can be edited via the terminal
 BUILDDIR = _build
-COMPILER = xelatex
+COMPILER = xetex
 PROJECT = cv
 BIBLIOGRAPHY = bibliography
 
