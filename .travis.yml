@@ -1,11 +1,7 @@
 sudo: required
 dist: trusty
 before_install:
-  - curl "https://gist.githubusercontent.com/ljvmiranda921/6055d03dc264bfca0ea8c421ec6a2b41/raw/b965460d8f792c5a825a3a088d56a4dce37b852f/tlsetup.sh" -o tlsetup.sh
-  - chmod +x tlsetup.sh 
-
-install:
-  - ./tlsetup.sh
+  - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 
 script:
   - make latex COMPILER=xelatex
