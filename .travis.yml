@@ -2,7 +2,8 @@ sudo: required
 dist: trusty
 
 install:
-  - sudo apt-get -qq update && sudo apt-get -qq install -y --no-install-recommends texlive-full biber
+  - sudo apt-get -qq update && sudo apt-get -qq install -y --no-install-recommends texlive-full
+  - tlmgr update --self --all --reinstall-forcibly-removed
 script:
   - make pdf clean
 
