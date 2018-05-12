@@ -1,43 +1,21 @@
-notifications:
-  email: false
+sudo: required
+dist: trusty
+before_install:
+  - curl "https://gist.githubusercontent.com/ljvmiranda921/6055d03dc264bfca0ea8c421ec6a2b41/raw/b965460d8f792c5a825a3a088d56a4dce37b852f/tlsetup.sh" -o tlsetup.sh
+  - chmod +x tlsetup.sh 
+
 install:
-  # Silent install from conda docs
-  # https://conda.io/docs/user-guide/install/macos.html#install-macos-silent
-  # adapted using
-  # https://conda.io/docs/user-guide/tasks/use-conda-with-travis-ci.html
+  - ./tlsetup.sh
 
-  # Needed to check if conda already installed
-  - export PATH="$HOME/miniconda/bin:$PATH"
-
-  # If not yet installed, obtain Miniconda
-  # and tectonic
-  # From tectonic docs
-  # https://tectonic-typesetting.github.io/en-US/install.html#the-anaconda-method
-  - if ! command -v conda > /dev/null; then
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-      bash miniconda.sh -b -p $HOME/miniconda -u;
-      conda config --add channels conda-forge;
-      conda config --set always_yes yes;
-      conda update --all;
-      conda update --all;
-      conda install tectonic;
-      curl http://ftp.fernuni-hagen.de/ftp-dir/pub/mirrors/www.ctan.org/fonts/fontawesome/tex/fontawesome.sty -o fontawesome.sty
-    fi
-  - conda info -a
-cache:
-  directories:
-    - $HOME/miniconda
-    - $HOME/.cache/Tectonic
 script:
-  - tectonic ./cv.tex --print
+  - make latex COMPILER=xelatex
 
-jobs:
-  include:
-    - stage: Deploy to Dropbox
-      provider: script
-      before_script: 
-      - curl "https://raw.githubusercontent.com/Sloy/Dropbox-Uploader/master/dropbox_uploader.sh" -o dropbox_uploader.sh
-      - chmod +x dropbox_uploader.sh
-      script: 
-      - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-latest.pdf
-      - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-${TRAVIS_JOB_NUMBER}.pdf
+deploy:
+  provider: script
+  skip_cleanup: true
+  before_script: 
+  - curl "https://raw.githubusercontent.com/Sloy/Dropbox-Uploader/master/dropbox_uploader.sh" -o dropbox_uploader.sh
+  - chmod +x dropbox_uploader.sh
+  script:
+  - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-latest.pdf
+  - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-${TRAVIS_JOB_NUMBER}.pdf
