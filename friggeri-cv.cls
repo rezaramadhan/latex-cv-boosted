@@ -1,125 +1,30 @@
 \ProvidesClass{friggeri-cv}[2012/04/30 CV class]
 \NeedsTeXFormat{LaTeX2e}
 
-\RequirePackage[quiet]{fontspec}
-\RequirePackage[math-style=TeX]{unicode-math}
-\RequirePackage{fontawesome}
-
-\DeclareOption{print}{\def\@cv@print{}}
-\DeclareOption*{%
-  \PassOptionsToClass{\CurrentOption}{article}%
-}
-
 \DeclareOption{heros}{
-\newfontfamily\bodyfont
-[Path=fonts/Heros/,BoldFont=texgyreheros-bold.otf,
-ItalicFont=texgyreheros-italic.otf,
-BoldItalicFont=texgyreheros-bolditalic.otf]
-{texgyreheros-regular.otf}
-\newfontfamily\thinfont[Path=fonts/Heros/]{Lato-Light.ttf}
-\newfontfamily\headingfont[Path=fonts/Heros/]{texgyreheros-bold.otf}
-
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont
-[Path=fonts/Heros/, Mapping=tex-text, Color=textcolor,
-BoldFont=texgyreheros-bold.otf,
-ItalicFont=texgyreheros-italic.otf,
-BoldItalicFont=texgyreheros-bolditalic.otf
-]
-{texgyreheros-regular.otf}
-
-\setmathfont[Path=fonts/Heros/]{texgyreheros-regular.otf}
+  \def\@cv@fontface{texgyreheros}
 }
-
-\DeclareOption{roboto}{
-\newfontfamily\bodyfont
-[Path=fonts/Roboto/,BoldFont=Roboto-Bold.ttf,
-ItalicFont=Roboto-Italic.ttf,
-BoldItalicFont=Roboto-BoldItalic.ttf]
-{Roboto-Regular.ttf}
-\newfontfamily\thinfont[Path=fonts/Roboto/]{Roboto-Light.ttf}
-\newfontfamily\headingfont[Path=fonts/Roboto/]{Roboto-Bold.ttf}
-
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont
-[Path=fonts/Roboto/, Mapping=tex-text, Color=textcolor,
-BoldFont=Roboto-Bold.ttf,
-ItalicFont=Roboto-Italic.ttf,
-BoldItalicFont=Roboto-BoldItalic.ttf
-]
-{Roboto-Regular.ttf}
-
-\setmathfont[Path=fonts/Roboto/]{Roboto-Regular.ttf}
-}
-
 \DeclareOption{alegreya}{
-\newfontfamily\bodyfont
-[Path=fonts/Alegreya/,BoldFont=AlegreyaSans-Bold.ttf,
-ItalicFont=AlegreyaSans-Italic.ttf,
-BoldItalicFont=AlegreyaSans-BoldItalic.ttf]
-{AlegreyaSans-Regular.ttf}
-\newfontfamily\thinfont[Path=fonts/Alegreya/]{AlegreyaSans-Light.ttf}
-\newfontfamily\headingfont[Path=fonts/Alegreya/]{AlegreyaSans-Bold.ttf}
-
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont
-[Path=fonts/Alegreya/, Mapping=tex-text, Color=textcolor,
-BoldFont=AlegreyaSans-Bold.ttf,
-ItalicFont=AlegreyaSans-Italic.ttf,
-BoldItalicFont=AlegreyaSans-BoldItalic.ttf
-]
-{AlegreyaSans-Regular.ttf}
-
-\setmathfont[Path=fonts/Alegreya/]{AlegreyaSans-Regular.ttf}
+    \def\@cv@fontface{AlegreyaSans}
 }
-
 \DeclareOption{merriweather}{
-\newfontfamily\bodyfont
-[Path=fonts/Merriweather/,BoldFont=MerriweatherSans-Bold.ttf,
-ItalicFont=MerriweatherSans-Italic.ttf,
-BoldItalicFont=MerriweatherSans-BoldItalic.ttf]
-{MerriweatherSans-Regular.ttf}
-\newfontfamily\thinfont[Path=fonts/Merriweather/]{MerriweatherSans-Light.ttf}
-\newfontfamily\headingfont[Path=fonts/Merriweather/]{MerriweatherSans-Bold.ttf}
-
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont
-[Path=fonts/Merriweather/, Mapping=tex-text, Color=textcolor,
-BoldFont=MerriweatherSans-Bold.ttf,
-ItalicFont=MerriweatherSans-Italic.ttf,
-BoldItalicFont=MerriweatherSans-BoldItalic.ttf
-]
-{MerriweatherSans-Regular.ttf}
-
-\setmathfont[Path=fonts/Merriweather/]{MerriweatherSans-Regular.ttf}
+    \def\@cv@fontface{MarriweatherSans}
 }
-
 \DeclareOption{nunito}{
-\newfontfamily\bodyfont
-[Path=fonts/Nunito/,BoldFont=Nunito-Bold.ttf,
-ItalicFont=Nunito-Italic.ttf,
-BoldItalicFont=Nunito-BoldItalic.ttf]
-{Nunito-Regular.ttf}
-\newfontfamily\thinfont[Path=fonts/Nunito/]{Nunito-Light.ttf}
-\newfontfamily\headingfont[Path=fonts/Nunito/]{Nunito-Bold.ttf}
-
-\defaultfontfeatures{Mapping=tex-text}
-\setmainfont
-[Path=fonts/Nunito/, Mapping=tex-text, Color=textcolor,
-BoldFont=Nunito-Bold.ttf,
-ItalicFont=Nunito-Italic.ttf,
-BoldItalicFont=Nunito-BoldItalic.ttf
-]
-{Nunito-Regular.ttf}
-
-\setmathfont[Path=fonts/Nunito/]{Nunito-Regular.ttf}
+    \def\@cv@fontface{Nunito}
 }
+\DeclareOption{roboto}{
+    \def\@cv@fontface{Roboto}
+}
+\DeclareOption{print}{\def\@cv@print{}}
 
+\DeclareOption*{%
+  \PassOptionsToClass{\CurrentOption,10pt}{article}%
+}
 \ExecuteOptions{heros}
 
 \ProcessOptions\relax
 \LoadClass{article}
-
 
 %%%%%%%%%%
 % Colors %
@@ -167,10 +72,13 @@ BoldItalicFont=Nunito-BoldItalic.ttf
 
 
 %%%%%%%%%
-% Fonts %
+% Fonts %g
 %%%%%%%%%
+\RequirePackage[quiet]{fontspec}
+\RequirePackage[math-style=TeX]{unicode-math}
+\RequirePackage{fontawesome}
+\RequirePackage{calc}
 
-% \RequirePackage[quiet]{fontspec}
 % \RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 % 
 % \newfontfamily\bodyfont[]{Helvetica Neue}
@@ -186,24 +94,26 @@ BoldItalicFont=Nunito-BoldItalic.ttf
 %\RequirePackage[quiet]{fontspec}
 %\RequirePackage[math-style=TeX]{unicode-math}
 
-%\newfontfamily\bodyfont
-%[BoldFont=texgyreheros-bold.otf,
-%ItalicFont=texgyreheros-italic.otf,
-%BoldItalicFont=texgyreheros-bolditalic.otf]
-%{texgyreheros-regular.otf}
-%\newfontfamily\thinfont[]{Lato-Light.ttf}
-%\newfontfamily\headingfont[]{texgyreheros-bold.otf}
+\newfontfamily\bodyfont
+[Path=fonts/\@cv@fontface/,
+BoldFont=\@cv@fontface-Bold.ttf,
+ItalicFont=\@cv@fontface-Italic.ttf,
+BoldItalicFont=\@cv@fontface-BoldItalic.ttf]
+{\@cv@fontface-Regular.ttf}
+\newfontfamily\thinfont[Path=fonts/\@cv@fontface/]{\@cv@fontface-Light.ttf}
+\newfontfamily\headingfont[Path=fonts/\@cv@fontface/]{\@cv@fontface-Bold.ttf}
 
-%\defaultfontfeatures{Mapping=tex-text}
-%\setmainfont
-%[Mapping=tex-text, Color=textcolor,
-%BoldFont=texgyreheros-bold.otf,
-%ItalicFont=texgyreheros-italic.otf,
-%BoldItalicFont=texgyreheros-bolditalic.otf
-%]
-%{texgyreheros-regular.otf}
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont
+[Mapping=tex-text, Color=textcolor,
+Path=fonts/\@cv@fontface/,
+BoldFont=\@cv@fontface-Bold.ttf,
+ItalicFont=\@cv@fontface-Italic.ttf,
+BoldItalicFont=\@cv@fontface-BoldItalic.ttf
+]
+{\@cv@fontface-Regular.ttf}
 
-%\setmathfont{texgyreheros-regular.otf}
+\setmathfont[Path=fonts/\@cv@fontface/]{\@cv@fontface-Regular.ttf}
 %%%
 
 %%%%%%%%%%
@@ -466,7 +376,7 @@ BoldItalicFont=Nunito-BoldItalic.ttf
 %%%%%%%%%%%%%%
 
 \usetikzlibrary{shapes}
-\newcommand\score[2]{
+\newcommand\score[1]{
 \pgfmathsetmacro\pgfxa{#1+1}
 \tikzstyle{scorestars}=[circle, draw,inner sep=2.25pt,anchor=south]
   \begin{tikzpicture}[baseline]
