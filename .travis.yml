@@ -4,7 +4,7 @@ before_install:
   - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
 
 script:
-  - make latex COMPILER=xelatex
+  - make pdf COMPILER=xelatex
 
 deploy:
   provider: script
