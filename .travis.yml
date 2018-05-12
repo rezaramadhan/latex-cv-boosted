@@ -1,11 +1,10 @@
 sudo: required
 dist: trusty
-before_install:
-  - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-full dvipng latex-xcolor fonts-lmodern
-  - sudo fmtutil-sys --all
+services:
+  - docker
 
 script:
-  - make pdf clean
+  - docker run --rm -it -v $PWD:/workdir texlivedocker_texlive make pdf clean
 
 deploy:
   provider: script
