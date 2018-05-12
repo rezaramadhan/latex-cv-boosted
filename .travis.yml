@@ -3,7 +3,7 @@ dist: trusty
 services:
   - docker
 install:
-  - docker run -v $PWD:/doc/  -t -i thomasweise/texlive sudo  -qq update && sudo apt-get install -y --no-install-recommends texlive-bibtex-extra biber
+  - docker run -v $PWD:/doc/  -t -i thomasweise/texlive sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-bibtex-extra biber
 script:
   - docker ps -a
   - docker run -v $PWD:/doc/ -t -i thomasweise/texlive make pdf clean
