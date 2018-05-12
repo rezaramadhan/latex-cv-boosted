@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker run --rm -it -v $PWD:/workdir texlivedocker_texlive make pdf clean
+  - ddocker run -v $PWD:/doc/  -t -i thomasweise/texlive make pdf clean
 
 deploy:
   provider: script
