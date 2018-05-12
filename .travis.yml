@@ -1,12 +1,10 @@
 sudo: required
 dist: trusty
-services:
-  - docker
+
 install:
-  - docker run -v $PWD:/doc/  -t -i thomasweise/texlive sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-bibtex-extra biber
+  - sudo apt-get -qq update && sudo apt-get -qq install -y --no-install-recommends texlive-full biber
 script:
-  - docker ps -a
-  - docker run -v $PWD:/doc/ -t -i thomasweise/texlive make pdf clean
+  - make pdf clean
 
 deploy:
   provider: script
