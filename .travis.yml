@@ -19,8 +19,9 @@ install:
       conda config --add channels conda-forge;
       conda config --set always_yes yes;
       conda update --all;
+      conda update --all;
       conda install tectonic;
-      wget http://ftp.fernuni-hagen.de/ftp-dir/pub/mirrors/www.ctan.org/fonts/fontawesome/tex/fontawesome.sty
+      curl http://ftp.fernuni-hagen.de/ftp-dir/pub/mirrors/www.ctan.org/fonts/fontawesome/tex/fontawesome.sty -o fontawesome.sty
     fi
   - conda info -a
 cache:
@@ -30,3 +31,13 @@ cache:
 script:
   - tectonic ./cv.tex --print
 
+jobs:
+  include:
+    - stage: Deploy to Dropbox
+      provider: script
+      before_script: 
+      - curl "https://raw.githubusercontent.com/Sloy/Dropbox-Uploader/master/dropbox_uploader.sh" -o dropbox_uploader.sh
+      - chmod +x dropbox_uploader.sh
+      script: 
+      - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-latest.pdf
+      - ./dropbox_uploader.sh upload _build/cv.pdf ${TRAVIS_BRANCH}/cv-${TRAVIS_JOB_NUMBER}.pdf
