@@ -19,7 +19,7 @@ pdf:
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "First pass (via $(COMPILER)) done!"
 	@cp $(BIBLIOGRAPHY).bib $(BUILDDIR)
-	@biblatex --output_directory=$(BUILDDIR) $(PROJECT)
+	@biber --output_directory=$(BUILDDIR) $(PROJECT)
 	@echo "Second pass (via bibtex) done!"
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "Third pass (via $(COMPILER)) done!"
