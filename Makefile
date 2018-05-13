@@ -23,6 +23,8 @@ pdf:
 	@echo "Second pass (via bibtex) done!"
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "Third pass (via $(COMPILER)) done!"
+	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
+	@echo "Third pass (via $(COMPILER)) done!"		        
 	@echo "Compilation done. Output file can be seen in $(BUILDDIR)"
 
 clean:
