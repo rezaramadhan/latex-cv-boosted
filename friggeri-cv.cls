@@ -16,6 +16,8 @@
 \DeclareOption{roboto}{
     \def\@cv@fontface{Roboto}
 }
+
+\DeclareOption{nocolors}{\def\@cv@nocolors{}}
 \DeclareOption{print}{\def\@cv@print{}}
 
 \DeclareOption*{%
@@ -69,7 +71,17 @@
 
 \def\colorPallete{{"friggeriblue","friggerired","friggeriorange","friggerigreen","friggeripurple","friggeribrown","friggeriyellowgreen","friggeribrickred"}}
 
-
+\ifdefined\@cv@nocolors
+  \colorlet{green}{gray}
+  \colorlet{rdfgreen}{gray}
+  \colorlet{orange}{gray}
+  \colorlet{rdforange}{gray}
+  \colorlet{purple}{gray}
+  \colorlet{rdfpurple}{gray}
+  \colorlet{brown}{gray}
+  \colorlet{red}{gray}
+  \colorlet{blue}{gray}
+\fi
 
 %%%%%%%%%
 % Fonts %g
