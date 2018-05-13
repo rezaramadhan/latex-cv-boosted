@@ -3,6 +3,7 @@ dist: trusty
 
 install:
   - sudo apt-get -qq update && sudo apt-get -qq install -y --no-install-recommends texlive-full
+  - tlmgr init-usertree
   - tlmgr update --self --all --reinstall-forcibly-removed
 script:
   - make pdf clean
