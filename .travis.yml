@@ -2,10 +2,9 @@ sudo: required
 dist: trusty
 
 install:
-  - sudo apt-get -qq update && sudo apt-get -qq install -y --no-install-recommends texlive-full
-  - tlmgr update --self --all --reinstall-forcibly-removed
+  - docker pull janstuemmel/latex
 script:
-  - make pdf clean
+  - docker run -v $PWD:/data -t -i janstuemmel/latex make pdf clean
 
 deploy:
   provider: script
