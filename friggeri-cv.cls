@@ -380,13 +380,14 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
    \markboth{#1}{#1}
 }
 
-\newcommand{\printbibsection}[2]{%
-  \begin{refsection}%
-    \newrefcontext[sorting=chronological]%
-    \nocite{*}%
-    \printbibliography[type={#1}, title={#2}, heading=subbibliography]%
-  \end{refsection}}
-
+\newcommand{\printbibsection}[2]{
+  \begin{refsection}
+    \nocite{*}
+    \printbibliography[sorting=chronological, type={#1}, title={#2}, heading=bibheading]
+  \end{refsection}
+}
+  
+  
 \DeclareSortingScheme{chronological}{
   \sort[direction=descending]{\field{year}}
   \sort[direction=descending]{\field{month}}
