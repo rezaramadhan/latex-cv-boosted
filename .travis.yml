@@ -10,7 +10,7 @@ addons:
             - biber
 
 script:
-    - make
+    - make pdf
 
 after_success: |
     if [ -n "$GITHUB_API_KEY" ]; then

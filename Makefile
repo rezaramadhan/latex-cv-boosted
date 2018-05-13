@@ -4,7 +4,7 @@
 # Modified by Jesper Dramsch
 .DEFAULT_GOAL := default
 
-default: pdf clean
+default: pdf
 
 # Default variables which can be edited via the terminal
 BUILDDIR = _build
