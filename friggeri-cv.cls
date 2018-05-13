@@ -362,24 +362,30 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
 \DeclareNameFormat{author}{%
   \small\addfontfeature{Color=lightgray}%
-  \nameparts{#1}\ifblank{\namepartgiven}{}{\namepartgiven\space}\namepartfamily%
-  \ifthenelse{\value{listcount}<\value{liststop}}
-    {\addcomma\space}
-    {}%
-}
+  \ifgiveninits
+    {\usebibmacro{name:given-family}
+      {\namepartfamily}
+      {\namepartgiveni}
+      {\namepartprefix}
+      {\namepartsuffix}}
+    {\usebibmacro{name:given-family}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
 
 \defbibheading{bibheading}[\bibname]{%
    \subsubsection*{#1}
    \markboth{#1}{#1}
 }
 
-\newcommand{\printbibsection}[2]{
-  \begin{refsection}
+\newcommand{\printbibsection}[2]{%
+  \begin{refsection}%
     \newrefcontext[sorting=chronological]%
-    \nocite{*}
-    \printbibliography[type={#1}, title={#2}, heading=bibheading]
-  \end{refsection}
-}
+    \nocite{*}%
+    \printbibliography[type={#1}, title={#2}, heading=subbibliography]%
+  \end{refsection}}
 
 \DeclareSortingScheme{chronological}{
   \sort[direction=descending]{\field{year}}
