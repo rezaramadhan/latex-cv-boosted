@@ -187,24 +187,21 @@ Rated "truly distinctive" for Analytical Skills and Teamwork.}
 %----------------------------------------------------------------------------------------
 
 \section{publications}
-
 \printbibsection{article}{article in peer-reviewed journal} % Print all articles from the bibliography
 
 \printbibsection{book}{books} % Print all books from the bibliography
 
 \begin{refsection} % This is a custom heading for those references marked as "inproceedings" but not containing "keyword=france"
 \nocite{*}
-\printbibliography[sorting=chronological, type=inproceedings, title={international peer-reviewed conferences/proceedings}, notkeyword={france}, heading=subbibliography]
+\printbibliography[type=inproceedings, title={international peer-reviewed conferences/proceedings}, notkeyword={france}, heading=bibheading]
 \end{refsection}
 
 \begin{refsection} % This is a custom heading for those references marked as "inproceedings" and containing "keyword=france"
 \nocite{*}
-\printbibliography[sorting=chronological, type=inproceedings, title={local peer-reviewed conferences/proceedings}, keyword={france}, heading=subbibliography]
+\printbibliography[type=inproceedings, title={local peer-reviewed conferences/proceedings}, keyword={france}, heading=bibheading]
 \end{refsection}
 
 \printbibsection{misc}{other publications} % Print all miscellaneous entries from the bibliography
-
-\printbibsection{thesis}{theses} % Print all theses from the bibliography
 
 \printbibsection{report}{research reports} % Print all research reports from the bibliography
 
