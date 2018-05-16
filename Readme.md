@@ -21,6 +21,7 @@ Several class options are available:
 
 ## Style
 * `a4paper`: Changes layout to A4.
+* `nocolors`: Changes to black and white, leaves headers.
 * `print`: Changes to black and white, removes header to minimize ink usage.
 
 ## Fonts
