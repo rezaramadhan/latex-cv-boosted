@@ -72,15 +72,15 @@
 \def\colorPallete{{"friggeriblue","friggerired","friggeriorange","friggerigreen","friggeripurple","friggeribrown","friggeriyellowgreen","friggeribrickred"}}
 
 \ifdefined\@cv@nocolors
-  \colorlet{green}{gray}
-  \colorlet{rdfgreen}{gray}
-  \colorlet{orange}{gray}
-  \colorlet{rdforange}{gray}
-  \colorlet{purple}{gray}
-  \colorlet{rdfpurple}{gray}
-  \colorlet{brown}{gray}
-  \colorlet{red}{gray}
-  \colorlet{blue}{gray}
+  \colorlet{friggerigreen}{gray}
+  \colorlet{friggeriorange}{gray}
+  \colorlet{friggeripurple}{gray}
+  \colorlet{friggeribrown}{gray}
+  \colorlet{friggerired}{gray}
+  \colorlet{friggeriblue}{gray}
+  \colorlet{friggeriyellowgreen}{gray}
+  \colorlet{friggeribrickred}{gray}
+  \colorlet{friggerisepia}{gray}
 \fi
 
 %%%%%%%%%
@@ -225,7 +225,7 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
     \hfill%
     {\footnotesize\addfontfeature{Color=lightgray} #3}\\%
     #4\vspace{\parsep}}\\%
-  \multicolumn{1}{r}{\footnotesize Thesis}&\parbox[t]{11.8cm}{\emph{#5}}\\%
+  \multicolumn{1}{r}{\footnotesize Thesis}&\parbox[t]{11.8cm}{#5}\\%
   \multicolumn{1}{r}{\footnotesize Coursework}&\parbox[t]{11.8cm}{{\footnotesize #6}%
   \vspace{\parsep}}\\}
 
@@ -434,4 +434,4 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 %%%%%%%%%%%%%%%%
 
 \RequirePackage[left=6.1cm,top=2cm,right=1.5cm,bottom=2.5cm,nohead,nofoot]{geometry}
-\RequirePackage{hyperref}
+\RequirePackage[hidelinks]{hyperref}
