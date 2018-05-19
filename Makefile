@@ -9,11 +9,9 @@ comma := ,
 BUILDDIR = _build
 COMPILER = xelatex
 PROJECT = cv
-BIBLIOGRAPHY = bibliography
-DOCOPTIONS ?= heros
-DOCSTR = $(DOCOPTIONS)
+BIBLIOGRAPHY = bibliography	
 
-pdf: headon
+pdf: headon clean
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
 	@echo "Creating $(BUILDDIR) directory..."
 	@mkdir $(BUILDDIR)
@@ -26,33 +24,29 @@ pdf: headon
 	@echo "Third pass (via $(COMPILER)) done!"
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "Last pass (via $(COMPILER)) done!"
-	@cp $(BUILDDIR)/$(PROJECT).pdf $(PROJECT)-$(DOCSTR).pdf
+	@cp $(BUILDDIR)/$(PROJECT).pdf $(PROJECT)-$(subst $(comma),-,$(strip $(DOCOPTIONS))).pdf
 	@echo "Compilation done. Output file is $(PROJECT)-$(DOCSTR).pdf"
 
-docdate: export DOCOPTIONS	= $(DOCOPTIONS)
-docstrdate: export DOCSTR = $(subst $(comma),-,$(strip $(DOCOPTIONS)))
 
 headon:
 ifneq ($(OPTIN),)
 	@$(eval DOCOPTIONS:=$(DOCOPTIONS),$(OPTIN))
 endif
 	@echo "\documentclass[$(DOCOPTIONS)]{friggeri-cv}" > .head
-	$(MAKE) docdate
-	$(MAKE) docstrdate
 
 a4pdf:
 	$(MAKE) headon OPTIN=a4pdf 
-	$(MAKE) pdf
+	$(MAKE) pdf DOCOPTIONS=$(DOCOPTIONS),a4pdf 
 
 nocolors:  
 	$(MAKE) headon OPTIN=nocolors
-	$(MAKE) pdf
+	$(MAKE) pdf DOCOPTIONS=$(DOCOPTIONS),print
 
 print: 
 	$(MAKE) headon OPTIN=print 
-	$(MAKE) pdf
+	$(MAKE) pdf DOCOPTIONS=$(DOCOPTIONS),print
 
-custom: pdf
+custom: pdf DOCOPTIONS=$(DOCOPTIONS)
 
 default: pdf
 
