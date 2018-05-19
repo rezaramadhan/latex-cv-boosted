@@ -13,8 +13,6 @@ BIBLIOGRAPHY = bibliography
 DOCOPTIONS ?= heros
 DOCSTR = $(DOCOPTIONS)
 
-
-
 pdf: headon
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
 	@echo "Creating $(BUILDDIR) directory..."

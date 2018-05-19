@@ -1,22 +1,16 @@
-sudo: false
+dist: trusty
+sudo: required
 
 language: c
 
 addons:
   apt:
     update: true
-    cache: true
     packages:
       - texlive-full
       - fonts-font-awesome
       - biber
 
-stages:
-  - prepare cache
-  - test
-
-cache:
-  - apt: true
 
 env:
   - DOCOPTIONS=print
@@ -29,19 +23,15 @@ env:
   - DOCOPTIONS=roboto
 
 
-jobs:
-  include:
-    - stage: prepare cache
-      env: DOCOPTIONS=a4paper
-      script: skip
-    - stage: test
-      script: make pdf
-      after_success: |
-        if [ -n "$GITHUB_API_KEY" ]; then
-          cd $TRAVIS_BUILD_DIR
-          git checkout --orphan $TRAVIS_BRANCH-pdf
-          git rm -rf .
-          git add -f *.pdf
-          git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
-          git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
-        fi
+script: 
+  - make custom DOCOPTIONS=$(DOCOPTIONS)
+
+after_success: |
+  if [ -n "$GITHUB_API_KEY" ]; then
+    cd $TRAVIS_BUILD_DIR
+    git checkout --orphan $TRAVIS_BRANCH-pdf
+    git rm -rf .
+    git add -f *.pdf
+    git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
+    git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+  fi
