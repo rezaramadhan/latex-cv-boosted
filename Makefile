@@ -18,7 +18,7 @@ DOCSTR = $(subst $(comma),-,$(DOCOPTIONS))
 
 define compiletex =
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
-	@echo "\documentclass[^$]{friggeri-cv}" > head.tex
+	echo "\documentclass[^$]{friggeri-cv}" > head.tex
 	@echo "Creating $(BUILDDIR) directory..."
 	@mkdir $(BUILDDIR)
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
