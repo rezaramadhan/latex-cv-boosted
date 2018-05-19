@@ -1,6 +1,16 @@
 sudo: false
 
 language: c
+env:
+  - DOCOPTIONS=print
+  - DOCOPTIONS=nocolors
+  - DOCOPTIONS=a4paper
+  - DOCOPTIONS=heros
+  - DOCOPTIONS=alegreya
+  - DOCOPTIONS=merriweather
+  - DOCOPTIONS=nunito
+  - DOCOPTIONS=roboto
+
 
 addons:
   apt:
@@ -11,19 +21,12 @@ addons:
 jobs:
   include:
     - stage: prepare cache
+      env: DOCOPTIONS=a4paper
       script: true
     - stage: test
-      env:
-        - DOCOPTIONS=print
-        - DOCOPTIONS=nocolors
-        - DOCOPTIONS=a4paper
-        - DOCOPTIONS=heros
-        - DOCOPTIONS=alegreya
-        - DOCOPTIONS=merriweather
-        - DOCOPTIONS=nunito
-        - DOCOPTIONS=roboto
       script: make pdf
     - stage: deploy        
+      env: DOCOPTIONS=a4paper
       script: skip
       after_success: |
         if [ -n "$GITHUB_API_KEY" ]; then
