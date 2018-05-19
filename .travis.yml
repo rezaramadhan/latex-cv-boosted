@@ -11,6 +11,13 @@ addons:
       - fonts-font-awesome
       - biber
 
+stages:
+  - prepare cache
+  - test
+
+cache:
+  - apt: true
+
 env:
   - DOCOPTIONS=print
   - DOCOPTIONS=nocolors
@@ -21,9 +28,6 @@ env:
   - DOCOPTIONS=nunito
   - DOCOPTIONS=roboto
 
-stages:
-  - prepare cache
-  - test
 
 jobs:
   include:
