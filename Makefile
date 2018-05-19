@@ -12,8 +12,9 @@ COMPILER = xelatex
 PROJECT = cv
 BIBLIOGRAPHY = bibliography
 
-pdf:
-	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)..."
+define compiletex =
+	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
+	@echo "\documentclass[^$]{friggeri-cv}" > head.tex
 	@echo "Creating $(BUILDDIR) directory..."
 	@mkdir $(BUILDDIR)
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
@@ -24,8 +25,13 @@ pdf:
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "Third pass (via $(COMPILER)) done!"
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
-	@echo "Third pass (via $(COMPILER)) done!"		        
+	@echo "Last pass (via $(COMPILER)) done!"		        
 	@echo "Compilation done. Output file can be seen in $(BUILDDIR)"
+endef
+
+pdf: $(compiletex)
+
+
 
 clean:
 	@rm -rf $(BUILDDIR)
