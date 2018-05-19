@@ -38,7 +38,7 @@ headon:
 ifneq ($(OPTIN),)
 	@$(eval DOCOPTIONS:=$(DOCOPTIONS),$(OPTIN))
 endif
-	@echo "\documentclass[$(DOCOPTIONS)]{friggeri-cv}" > head.tex
+	@echo "\documentclass[$(DOCOPTIONS)]{friggeri-cv}" > .head
 	$(MAKE) docdate
 	$(MAKE) docstrdate
 

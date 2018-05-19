@@ -18,7 +18,7 @@
 % needs to be compiled with biber rather than bibtex.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\input{head.tex}
+\input{.head}
 
 \addbibresource{bibliography.bib} % Specify the bibliography file to include publications
 
@@ -57,174 +57,57 @@ CSS3 \& HTML5
 %	EDUCATION SECTION
 %----------------------------------------------------------------------------------------
 
-\section{education}
-
-\begin{entrylist}
-%------------------------------------------------
-\courseentry
-{2011--2012}
-{Bachelor {\normalfont of Commerce}}
-{The University of California, Berkeley}
-{Money Is The Root Of All Evil -- Or Is It?}
-{This thesis explored the idea that money has been the cause of untold anguish and suffering in the world. I found that it has, in fact, not.}
-{Business for Business Gurus, Money 101}
-%------------------------------------------------
-\end{entrylist}
+\input{sections/education.tex}
 
 %----------------------------------------------------------------------------------------
 %	WORK EXPERIENCE SECTION
 %----------------------------------------------------------------------------------------
 
-\section{experience}
-
-\begin{entrylist}
-%------------------------------------------------
-\entry
-{2012--Now}
-{LEHMAN BROTHERS}
-{Los Angeles, California}
-{\emph{1\textsuperscript{st} Year Analyst} \\
-Developed spreadsheets for risk analysis on exotic derivatives on a wide array of commodities (ags, oils, precious and base metals), managed blotter and secondary trades on structured notes, liaised with Middle Office, Sales and Structuring for bookkeeping. \\
-Detailed achievements:
-\begin{itemize}
-\item Learned how to make amazing coffee
-\item Finally determined the reason for \textsc{PC LOAD LETTER}:
-\begin{itemize}
-\item Paper jam
-\item Software issues:
-\begin{itemize}
-\item Word not sending the correct data to printer
-\item Windows trying to print in letter format
-\end{itemize}
-\item Coffee spilled inside printer
-\end{itemize}
-\item Broke the office record for number of kitten pictures in cubicle
-\end{itemize}}
-%------------------------------------------------
-\entry
-{2010--2011}
-{LEHMAN BROTHERS}
-{London, United Kingdom}
-{\emph{Summer Intern} \\
-Rated "truly distinctive" for Analytical Skills and Teamwork.}
-%------------------------------------------------
-%------------------------------------------------
-\end{entrylist}
+\input{sections/experience.tex}
 
 %----------------------------------------------------------------------------------------
 %	AWARDS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{awards}
-
-\begin{entrylist}
-%------------------------------------------------
-\entry
-{2011}
-{Postgraduate Scholarship}
-{School of Business, The University of California}
-{Awarded to the top student in their final year of a Bachelors degree.}
-%------------------------------------------------
-\end{entrylist}
-
+\input{sections/awards.tex}
 
 %----------------------------------------------------------------------------------------
 %	COMMUNICATION SKILLS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{communication skills}
+\input{sections/communication.tex}
 
-\begin{entrylist}
-%------------------------------------------------
-\entry
-{2011}
-{Oral Presentation}
-{California Business Conference}
-{Presented the research I conducted for my Masters of Commerce degree.}
-%------------------------------------------------
-\entry
-{2010}
-{Poster}
-{Annual Business Conference, Oregon}
-{As part of the course work for BUS320, I created a poster analyzing several local businesses and presented this at a conference.}
-%------------------------------------------------
-\end{entrylist}
 
 %----------------------------------------------------------------------------------------
 %	VOLUNTARY ACTIVITIES SECTION
 %----------------------------------------------------------------------------------------
 
-
-\section{voluntary activities}
-\begin{entrylist}
-\entry
-{2011}
-{Vice President}
-{Lion's Club}
-{We like lions. Also we help people}
-\entry
-{2008--2011}
-{Helping Hand}
-{Helping Hands Assoc.}
-{Help elderly cross the street.}
-\entry
-{2007--today}
-{Blood Donor}
-{Blood donation center}
-{Consistent blood and plasma donor.}
-\end{entrylist}
+\input{sections/volunteer.tex}
 
 %----------------------------------------------------------------------------------------
 %	INTERESTS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{interests}
-
-\textbf{professional:} data analysis, company profiling, risk analysis, economics, web design, web app creation, software design, marketing \textbf{personal:} piano, chess, cooking, dancing, running
+\input{sections/interest.tex}
 
 %----------------------------------------------------------------------------------------
 %	PUBLICATIONS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{publications}
-\printbibsection{article}{article in peer-reviewed journal} % Print all articles from the bibliography
+\input{sections/publication.tex}
 
-\printbibsection{book}{books} % Print all books from the bibliography
+%----------------------------------------------------------------------------------------
+%	REFERENCES SECTION
+%----------------------------------------------------------------------------------------
 
-\begin{refsection} % This is a custom heading for those references marked as "inproceedings" but not containing "keyword=france"
-\nocite{*}
-\printbibliography[type=inproceedings, title={international peer-reviewed conferences/proceedings}, notkeyword={france}, heading=bibheading]
-\end{refsection}
+\input{sections/references.tex}
 
-\begin{refsection} % This is a custom heading for those references marked as "inproceedings" and containing "keyword=france"
-\nocite{*}
-\printbibliography[type=inproceedings, title={local peer-reviewed conferences/proceedings}, keyword={france}, heading=bibheading]
-\end{refsection}
 
-\printbibsection{misc}{other publications} % Print all miscellaneous entries from the bibliography
 
-\printbibsection{report}{research reports} % Print all research reports from the bibliography
 
 %----------------------------------------------------------------------------------------
 
-\section{references}
 
-\refrow{\cvref{Jill Trades}%
-				{Business School}%
-				{1234 Elm Street}%
-				{Ny}%
-				{USA}%
-				{jack.trades@gmail.com}%
-				{+000 000 555 000}%
-		}{%
-		\cvref{Jack Trades}%
-				{Department of Business}%
-				{1234 Elm Street}%
-				{Ny}%
-				{USA}%
-				{jack.trades@gmail.com}%
-				{+000 000 555 000}%
-		}
 
 
 
