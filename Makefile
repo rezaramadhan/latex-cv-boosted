@@ -6,11 +6,15 @@
 
 default: pdf
 
+comma = ,
+
 # Default variables which can be edited via the terminal
 BUILDDIR = _build
 COMPILER = xelatex
 PROJECT = cv
 BIBLIOGRAPHY = bibliography
+DOCOPTIONS ?= heros
+DOCSTR = $(subst $(comma),-,$(DOCOPTIONS))
 
 define compiletex =
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
@@ -25,13 +29,22 @@ define compiletex =
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "Third pass (via $(COMPILER)) done!"
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
-	@echo "Last pass (via $(COMPILER)) done!"		        
-	@echo "Compilation done. Output file can be seen in $(BUILDDIR)"
+	@echo "Last pass (via $(COMPILER)) done!"
+	@cp $(BUILDDIR)/$(PROJECT).pdf $(PROJECT)-$(DOCSTR).pdf
+	@echo "Compilation done. Output file is $(PROJECT)-$(DOCSTR).pdf"
 endef
 
-pdf: $(compiletex)
+pdf: $(DOCOPTIONS) 
+	$(compiletex)
 
+a4pdf: a4paper,$(DOCOPTIONS) 
+	$(compiletex)
 
+print: print
+	$(compiletex)
+	
+nocolors: nocolors
+	$(compiletex)
 
 clean:
 	@rm -rf $(BUILDDIR)
