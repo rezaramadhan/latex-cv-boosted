@@ -1,6 +1,17 @@
 sudo: false
 
 language: c
+
+addons:
+  apt:
+    packages:
+      - texlive-full
+      - fonts-font-awesome
+      - biber
+
+cache:
+  - apt: true
+
 env:
   - DOCOPTIONS=print
   - DOCOPTIONS=nocolors
@@ -15,12 +26,6 @@ stages:
   - prepare cache
   - test
 
-addons:
-  apt:
-    packages:
-      - texlive-full
-      - fonts-font-awesome
-      - biber
 jobs:
   include:
     - stage: prepare cache
