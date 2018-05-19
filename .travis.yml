@@ -4,13 +4,12 @@ language: c
 
 addons:
   apt:
+    update: true
+    cache: true
     packages:
       - texlive-full
       - fonts-font-awesome
       - biber
-
-cache:
-  - apt: true
 
 env:
   - DOCOPTIONS=print
@@ -30,7 +29,7 @@ jobs:
   include:
     - stage: prepare cache
       env: DOCOPTIONS=a4paper
-      script: true
+      script: skip
     - stage: test
       script: make pdf
       after_success: |
