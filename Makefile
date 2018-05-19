@@ -4,21 +4,19 @@
 # Modified by Jesper Dramsch
 .DEFAULT_GOAL := default
 
-default: pdf
-
-comma = ,
-
 # Default variables which can be edited via the terminal
+comma := ,
 BUILDDIR = _build
 COMPILER = xelatex
 PROJECT = cv
 BIBLIOGRAPHY = bibliography
 DOCOPTIONS ?= heros
-DOCSTR = $(subst $(comma),-,$(DOCOPTIONS))
+DOCSTR = $(DOCOPTIONS)
 
-define compiletex =
+
+
+pdf: headon
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
-	echo "\documentclass[^$]{friggeri-cv}" > head.tex
 	@echo "Creating $(BUILDDIR) directory..."
 	@mkdir $(BUILDDIR)
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
@@ -32,19 +30,33 @@ define compiletex =
 	@echo "Last pass (via $(COMPILER)) done!"
 	@cp $(BUILDDIR)/$(PROJECT).pdf $(PROJECT)-$(DOCSTR).pdf
 	@echo "Compilation done. Output file is $(PROJECT)-$(DOCSTR).pdf"
-endef
 
-pdf: $(DOCOPTIONS) 
-	$(compiletex)
+docdate: export DOCOPTIONS	= $(DOCOPTIONS)
+docstrdate: export DOCSTR = $(subst $(comma),-,$(strip $(DOCOPTIONS)))
 
-a4pdf: a4paper,$(DOCOPTIONS) 
-	$(compiletex)
+headon:
+ifneq ($(OPTIN),)
+	@$(eval DOCOPTIONS:=$(DOCOPTIONS),$(OPTIN))
+endif
+	@echo "\documentclass[$(DOCOPTIONS)]{friggeri-cv}" > head.tex
+	$(MAKE) docdate
+	$(MAKE) docstrdate
 
-print: print
-	$(compiletex)
-	
-nocolors: nocolors
-	$(compiletex)
+a4pdf:
+	$(MAKE) headon OPTIN=a4pdf 
+	$(MAKE) pdf
+
+nocolors:  
+	$(MAKE) headon OPTIN=nocolors
+	$(MAKE) pdf
+
+print: 
+	$(MAKE) headon OPTIN=print 
+	$(MAKE) pdf
+
+custom: pdf
+
+default: pdf
 
 clean:
 	@rm -rf $(BUILDDIR)
