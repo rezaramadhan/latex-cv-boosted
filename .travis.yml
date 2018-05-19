@@ -11,6 +11,9 @@ env:
   - DOCOPTIONS=nunito
   - DOCOPTIONS=roboto
 
+stages:
+  - prepare cache
+  - test
 
 addons:
   apt:
