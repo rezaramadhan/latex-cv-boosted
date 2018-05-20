@@ -9,7 +9,7 @@ comma := ,
 BUILDDIR = _build
 COMPILER = xelatex
 PROJECT = cv
-BIBLIOGRAPHY = bibliography	
+BIBLIOGRAPHY = biber	
 
 pdf: headon clean
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
