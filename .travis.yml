@@ -34,6 +34,7 @@ jobs:
     - stage: Initialize
       env:
         - DOCOPTIONS=heros
+      install: true
       script: |
         if [ -n "$GITHUB_API_KEY" ]; then
           git checkout --orphan $TRAVIS_BRANCH-pdf
