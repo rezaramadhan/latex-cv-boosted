@@ -8,7 +8,7 @@
     \def\@cv@fontface{AlegreyaSans}
 }
 \DeclareOption{merriweather}{
-    \def\@cv@fontface{MarriweatherSans}
+    \def\@cv@fontface{MerriweatherSans}
 }
 \DeclareOption{nunito}{
     \def\@cv@fontface{Nunito}
