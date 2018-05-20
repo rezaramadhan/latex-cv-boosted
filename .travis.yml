@@ -46,8 +46,9 @@ script: make custom
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
     git stash -q
-    git checkout $TRAVIS_BRANCH-pdf
-    git pull -q -f upstrem $TRAVIS_BRANCH-pdf
+    git checkout --orphan $TRAVIS_BRANCH-pdf
+    git rm -rf .
+    git pull -q -f upstream $TRAVIS_BRANCH-pdf
     git checkout -f master cv-$DOCOPTIONS.pdf
     git add -f cv-$DOCOPTIONS.pdf
     git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
