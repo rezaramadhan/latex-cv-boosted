@@ -19,12 +19,13 @@ env:
 
 before_install: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" = "heros" ]; then
+    git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
     git checkout --orphan $TRAVIS_BRANCH-pdf
     git rm -rf .
     touch README
     git add README
     git -c user.name='travis' -c user.email='travis' commit -m "Initial commit"
-    git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+    git push -q -f upstream $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   fi
   
@@ -35,8 +36,8 @@ install:
 before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
     git fetch $TRAVIS_REPO_SLUG
-    git checkout -b -f $TRAVIS_BRANCH-pdf $TRAVIS_REPO_SLUG/$TRAVIS_BRANCH-pdf
-    git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+    git checkout -b -f $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
+    git pull -q -f upstream $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   fi
 
@@ -46,11 +47,11 @@ after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
     git stash -q
     git checkout $TRAVIS_BRANCH-pdf
-    git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+    git pull -q -f upstrem $TRAVIS_BRANCH-pdf
     git checkout -f master cv-$DOCOPTIONS.pdf
     git add -f cv-$DOCOPTIONS.pdf
     git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
-    git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+    git push -q -f upstream $TRAVIS_BRANCH-pdf
   fi
 
 jobs:
