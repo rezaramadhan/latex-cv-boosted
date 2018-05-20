@@ -53,7 +53,7 @@ after_success: |
     git checkout -f master cv-$DOCOPTIONS.pdf
     git add -f cv-$DOCOPTIONS.pdf
     git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
-    git push -q -f upstream $TRAVIS_BRANCH-pdf
+    git push -q upstream $TRAVIS_BRANCH-pdf
   fi
 
 jobs:
