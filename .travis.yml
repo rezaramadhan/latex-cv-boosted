@@ -31,6 +31,11 @@ before_install: |
     git -c user.name='travis' -c user.email='travis' commit -m "Initial commit"
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
+  else
+    git checkout --orphan $TRAVIS_BRANCH-pdf
+    git rm -rf .  
+    git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+    git checkout $TRAVIS_BRANCH
   fi
 
 script: make custom
@@ -38,6 +43,7 @@ script: make custom
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
     git stash
+    
     git checkout $TRAVIS_BRANCH-pdf
     git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout master *.pdf
