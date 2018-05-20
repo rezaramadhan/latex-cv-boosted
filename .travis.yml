@@ -7,15 +7,6 @@ branches:
   only:
   - master
 
-addons:
-  apt:
-    update: true
-    packages:
-      - texlive-full
-      - fonts-font-awesome
-      - biber
-      - imagemagick
-
 env:
   - DOCOPTIONS=heros
   - DOCOPTIONS=print
@@ -37,7 +28,9 @@ before_install: |
     git checkout $TRAVIS_BRANCH
   fi
   
-install: sleep 10
+install:
+  - sudo apt-get -qq update
+  - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install texlive-full fonts-font-awesome biber
   
 before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
@@ -65,6 +58,9 @@ jobs:
     - stage: Deploy
       env:
         - DOCOPTIONS=a4paper
+      install:
+        - sudo apt-get -qq update
+        - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install imagemagick
       script: |
         if [ -n "$GITHUB_API_KEY" ]; then
           git fetch -q -f
