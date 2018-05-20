@@ -36,14 +36,19 @@ after_success: |
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
   fi
 
-deploy: |
-  if [ -n "$GITHUB_API_KEY" ]; then
-    git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG 
-    git checkout $TRAVIS_BRANCH-pdf
-    mkdir -p png
-    magick mogrify -density 288 -resize 25% -format png *.pdf[0]
-    mv *.png png/
-    git add -f png/*.png
-    git -c user.name='travis' -c user.email='travis' commit -m "pngs for readme"
-    git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf    
-  fi
+deploy: 
+  provider: script
+  script: |
+    if [ -n "$GITHUB_API_KEY" ]; then
+      git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG 
+      git checkout $TRAVIS_BRANCH-pdf
+      mkdir -p png
+      magick mogrify -density 288 -resize 25% -format png *.pdf[0]
+      mv *.png png/
+      git add -f png/*.png
+      git -c user.name='travis' -c user.email='travis' commit -m "pngs for readme"
+      git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf    
+    fi
+  on:
+    all_branches: true
+    condition: $DOCOPTIONS = heros
