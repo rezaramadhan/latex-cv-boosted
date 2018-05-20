@@ -37,10 +37,12 @@ before_install: |
     git checkout $TRAVIS_BRANCH
   fi
   
+install: sleep 10
+  
 before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
     git checkout -b $TRAVIS_BRANCH-pdf 
-    git branch -u upstream/foo
+    git branch -u https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG/$TRAVIS_BRANCH-pdf
     git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   fi
@@ -49,9 +51,8 @@ script: make custom
 
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
-    git stash -q -f
-    git fetch -q -f
-    git checkout -f $TRAVIS_BRANCH-pdf
+    git stash -q
+    git checkout $TRAVIS_BRANCH-pdf
     git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout -f master cv-$DOCOPTIONS.pdf
     git add -f cv-$DOCOPTIONS.pdf
