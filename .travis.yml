@@ -23,7 +23,7 @@ env:
   - DOCOPTIONS=roboto
 
 before_script: |
-  if[ $DOCOPTIONS=heros ]; then
+  if[ $DOCOPTIONS="heros" ]; then
     if [ -n "$GITHUB_API_KEY" ]; then
       git checkout --orphan $TRAVIS_BRANCH-pdf
       git rm -rf .
