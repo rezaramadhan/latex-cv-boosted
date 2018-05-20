@@ -3,6 +3,10 @@ sudo: required
 
 language: c
 
+branches:
+  only:
+  - master
+
 addons:
   apt:
     update: true
@@ -36,6 +40,7 @@ before_install: |
 before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
     git checkout -b $TRAVIS_BRANCH-pdf 
+    git branch -u upstream/foo
     git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   fi
