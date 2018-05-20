@@ -32,8 +32,8 @@ before_install: |
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   else
-    git checkout --orphan $TRAVIS_BRANCH-pdf
-    git rm -rf .  
+    git fetch 
+    git checkout $TRAVIS_BRANCH-pdf 
     git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   fi
