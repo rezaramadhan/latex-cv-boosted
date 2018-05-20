@@ -12,7 +12,12 @@ addons:
       - biber
       - imagemagick
 
-
+stages:
+  - name: Initialize
+    if: branch = master
+  - Test
+  - name: Deploy
+    if: branch = master
 env:
   - DOCOPTIONS=print
   - DOCOPTIONS=nocolors
@@ -23,32 +28,41 @@ env:
   - DOCOPTIONS=nunito
   - DOCOPTIONS=roboto
 
-
-script: 
-  - make custom
-
-after_success: |
-  if [ -n "$GITHUB_API_KEY" ]; then
-    git checkout --orphan $TRAVIS_BRANCH-pdf
-    git rm -rf .
-    git add -f *.pdf
-    git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
-    git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
-  fi
-
-deploy: 
-  provider: script
-  script: |
-    if [ -n "$GITHUB_API_KEY" ]; then
-      git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG 
-      git checkout $TRAVIS_BRANCH-pdf
-      mkdir -p png
-      magick mogrify -density 288 -resize 25% -format png *.pdf[0]
-      mv *.png png/
-      git add -f png/*.png
-      git -c user.name='travis' -c user.email='travis' commit -m "pngs for readme"
-      git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf    
-    fi
-  on:
-    all_branches: true
-    condition: $DOCOPTIONS = heros
+  
+jobs:
+  include:
+    - stage: Initialize
+      env:
+        - DOCOPTIONS=heros
+      script: |
+        if [ -n "$GITHUB_API_KEY" ]; then
+          git checkout --orphan $TRAVIS_BRANCH-pdf
+          git rm -rf .
+          git -c user.name='travis' -c user.email='travis' commit -m "Initial commit"
+          git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+        fi
+    - stage: Test
+      script:
+        - make custom
+      after_success: |
+        if [ -n "$GITHUB_API_KEY" ]; then
+          git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
+          git checkout $TRAVIS_BRANCH-pdf
+          git add -f *.pdf
+          git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
+          git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+        fi
+    - stage: Deploy
+      env:
+        - DOCOPTIONS=heros
+      script: |
+        if [ -n "$GITHUB_API_KEY" ]; then
+          git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG 
+          git checkout $TRAVIS_BRANCH-pdf
+          mkdir -p png
+          magick mogrify -density 288 -resize 25% -format png *.pdf[0]
+          mv *.png png/
+          git add -f png/*.png
+          git -c user.name='travis' -c user.email='travis' commit -m "pngs for readme"
+          git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf    
+        fi
