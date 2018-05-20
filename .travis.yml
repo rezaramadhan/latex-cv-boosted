@@ -23,11 +23,11 @@ env:
   - DOCOPTIONS=roboto
 
 before_install: |
-  if [ -n "$GITHUB_API_KEY" && "$DOCOPTIONS" == "heros"]; then
+  if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" = "heros" ]; then
     git checkout --orphan $TRAVIS_BRANCH-pdf
     git rm -rf .
-    touch README.md
-    git add README.md
+    touch README
+    git add README
     git -c user.name='travis' -c user.email='travis' commit -m "Initial commit"
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
   fi
@@ -47,13 +47,13 @@ jobs:
   include:
     - stage: Deploy
       env:
-        - DOCOPTIONS=heros
+        - DOCOPTIONS=a4paper
       script: |
         if [ -n "$GITHUB_API_KEY" ]; then
           git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG 
           git checkout $TRAVIS_BRANCH-pdf
           mkdir -p png
-          magick mogrify -density 288 -resize 25% -format png *.pdf[0]
+          mogrify -density 288 -resize 25% -format png *.pdf[0]
           mv *.png png/
           git add -f png/*.png
           git -c user.name='travis' -c user.email='travis' commit -m "pngs for readme"
