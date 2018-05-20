@@ -31,9 +31,11 @@ before_install: |
     git -c user.name='travis' -c user.email='travis' commit -m "Initial commit"
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
-  else
-    git fetch 
-    git checkout $TRAVIS_BRANCH-pdf 
+  fi
+  
+before_script: |
+  if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
+    git checkout -b $TRAVIS_BRANCH-pdf 
     git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   fi
