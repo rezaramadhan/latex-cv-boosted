@@ -1,4 +1,4 @@
-[![](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/)
+[![](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://github.com/JesperDramsch/friggeri-cv-boosted/tree/master-pdf)
 # About
 Modification of the friggeri-cv Latex template. Original was typeset in Helvetica and using colors inspired by Monokai. Modification uses extended colour palette and a choice of libre fonts.
 
