@@ -14,7 +14,7 @@ BIBLIOGRAPHY = bibliography
 pdf: headon clean
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
 	@echo "Creating $(BUILDDIR) directory..."
-	@mkdir $(BUILDDIR)
+	@mkdir -p $(BUILDDIR)
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "First pass (via $(COMPILER)) done!"
 	@cp $(BIBLIOGRAPHY).bib $(BUILDDIR)
@@ -25,7 +25,7 @@ pdf: headon clean
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "Last pass (via $(COMPILER)) done!"
 	@cp $(BUILDDIR)/$(PROJECT).pdf $(PROJECT)-$(subst $(comma),-,$(strip $(DOCOPTIONS))).pdf
-	@echo "Compilation done. Output file is $(PROJECT)-$(DOCSTR).pdf"
+	@echo "Compilation done. Output file is $(PROJECT)-$(subst $(comma),-,$(strip $(DOCOPTIONS))).pdf"
 
 
 headon:
@@ -46,9 +46,11 @@ print:
 	$(MAKE) headon OPTIN=print 
 	$(MAKE) pdf DOCOPTIONS=$(DOCOPTIONS),print
 
-custom: pdf DOCOPTIONS=$(DOCOPTIONS)
+custom: pdf 
+	
 
 default: pdf
+	
 
 clean:
 	@rm -rf $(BUILDDIR)

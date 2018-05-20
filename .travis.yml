@@ -25,16 +25,16 @@ env:
 
 
 script: 
-  - make custom DOCOPTIONS=$(DOCOPTIONS)
+  - make custom
 
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
     mkdir -p png
-    convert -density 288 cv-$DOCOPTIONS.pdf[0] -resize 25% png/cv-$DOCOPTIONS.png
+    convert -density 288 cv-$(subst $(comma),-,$(strip $(DOCOPTIONS))).pdf[0] -resize 25% png/cv-$(subst $(comma),-,$(strip $(DOCOPTIONS))).png
     git checkout --orphan $TRAVIS_BRANCH-pdf
     git rm -rf .
-    git add -f cv-$DOCOPTIONS.pdf
-    git add -f png/cv-$DOCOPTIONS.png    
+    git add -f cv-$(subst $(comma),-,$(strip $(DOCOPTIONS))).pdf
+    git add -f png/cv-$(subst $(comma),-,$(strip $(DOCOPTIONS))).png    
     git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
   fi
