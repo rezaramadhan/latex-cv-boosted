@@ -30,14 +30,15 @@ before_install: |
     git add README
     git -c user.name='travis' -c user.email='travis' commit -m "Initial commit"
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+    git checkout $TRAVIS_BRANCH
   fi
 
 script: make custom
 
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
-    git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
     git checkout $TRAVIS_BRANCH-pdf
+    git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
     git add -f *.pdf
     git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
@@ -50,8 +51,9 @@ jobs:
         - DOCOPTIONS=a4paper
       script: |
         if [ -n "$GITHUB_API_KEY" ]; then
-          git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG 
-          git checkout $TRAVIS_BRANCH-pdf
+          git checkout --orphan $TRAVIS_BRANCH-pdf
+          git rm -rf .
+          git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
           mkdir -p png
           mogrify -density 288 -resize 25% -format png *.pdf[0]
           mv *.png png/
