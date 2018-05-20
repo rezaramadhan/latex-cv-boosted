@@ -42,12 +42,12 @@ script: make custom
 
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
-    git stash
-    
-    git checkout $TRAVIS_BRANCH-pdf
+    git stash -q -f
+    git fetch -q -f
+    git checkout -f $TRAVIS_BRANCH-pdf
     git pull -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
-    git checkout master *.pdf
-    git add -f *.pdf
+    git checkout -f master cv-$DOCOPTIONS.pdf
+    git add -f cv-$DOCOPTIONS.pdf
     git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
     git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
   fi
@@ -59,7 +59,8 @@ jobs:
         - DOCOPTIONS=a4paper
       script: |
         if [ -n "$GITHUB_API_KEY" ]; then
-          git checkout $TRAVIS_BRANCH-pdf
+          git fetch -q -f
+          git checkout -f $TRAVIS_BRANCH-pdf
           git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
           mkdir -p png
           mogrify -density 288 -resize 25% -format png *.pdf[0]
