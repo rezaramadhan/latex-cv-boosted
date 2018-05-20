@@ -35,6 +35,7 @@ install:
   
 before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
+    git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
     git fetch $TRAVIS_REPO_SLUG
     git checkout -b -f $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
     git pull -q -f upstream $TRAVIS_BRANCH-pdf
