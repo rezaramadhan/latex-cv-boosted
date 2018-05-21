@@ -22,8 +22,8 @@ before_install: |
     git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
     git checkout --orphan $TRAVIS_BRANCH-pdf
     git rm -rf .
-    touch README
-    git add README
+    touch Readme.md
+    git add Readme.md
     git -c user.name='travis' -c user.email='travis' commit -m "Initial commit"
     git push -q -f upstream $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
@@ -36,7 +36,7 @@ install:
 before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
     git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
-    git fetch $TRAVIS_REPO_SLUG
+    git fetch upstream
     git checkout -b -f $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
     git pull -q -f upstream $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
@@ -47,8 +47,8 @@ script: make custom
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
     git stash -q
-    git checkout --orphan $TRAVIS_BRANCH-pdf
-    git rm -rf .
+    git fetch upstream
+    git checkout -b -f $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
     git pull -q -f upstream $TRAVIS_BRANCH-pdf
     git checkout -f master cv-$DOCOPTIONS.pdf
     git add -f cv-$DOCOPTIONS.pdf
@@ -66,13 +66,14 @@ jobs:
         - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install imagemagick
       script: |
         if [ -n "$GITHUB_API_KEY" ]; then
-          git fetch -q -f
+          git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
+          git fetch -q upstream
           git checkout -f $TRAVIS_BRANCH-pdf
-          git pull https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf
+          git pull -f upstream $TRAVIS_BRANCH-pdf
           mkdir -p png
           mogrify -density 288 -resize 25% -format png *.pdf[0]
           mv *.png png/
           git add -f png/*.png
           git -c user.name='travis' -c user.email='travis' commit -m "pngs for readme"
-          git push -q -f https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH-pdf    
+          git push -q upstream $TRAVIS_BRANCH-pdf    
         fi
