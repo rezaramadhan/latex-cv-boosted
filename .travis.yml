@@ -37,8 +37,8 @@ before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
     git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
     git fetch upstream
-    git checkout -b -f $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
-    git pull -q -f upstream $TRAVIS_BRANCH-pdf
+    git checkout -f -b $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
+    git pull -f -q upstream $TRAVIS_BRANCH-pdf
     git checkout $TRAVIS_BRANCH
   fi
 
@@ -48,7 +48,7 @@ after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
     git stash -q
     git fetch upstream
-    git checkout -b -f $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
+    git checkout -f -b $TRAVIS_BRANCH-pdf upstream/$TRAVIS_BRANCH-pdf
     git pull -q -f upstream $TRAVIS_BRANCH-pdf
     git checkout -f master cv-$DOCOPTIONS.pdf
     git add -f cv-$DOCOPTIONS.pdf
