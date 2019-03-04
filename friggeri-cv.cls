@@ -419,14 +419,15 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
  \newcommand{\printbibsection}[3][]{
   \begin{refsection}
-     \nocite{*}
+     \newrefcontext[sorting=chronological]%
+     \nocite{*}%
      \ifthenelse{\equal{#1}{}}{%
-         \printbibliography[sorting=chronological, type={#2}, title={#3}, heading=bibheading]%
+         \printbibliography[type={#2}, title={#3}, heading=bibheading]%
      }{%
      \ifthenelse{\equal{#2}{}}{%
-         \printbibliography[sorting=chronological, #1, title={#3}, heading=bibheading]%
+         \printbibliography[#1, title={#3}, heading=bibheading]%
          }{%
-         \printbibliography[sorting=chronological, #1, type={#2}, title={#3}, heading=bibheading]%
+         \printbibliography[#1, type={#2}, title={#3}, heading=bibheading]%
          }
      }
   \end{refsection}
