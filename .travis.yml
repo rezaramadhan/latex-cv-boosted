@@ -30,7 +30,7 @@ before_install: |
   fi
   
 install:
-  - sudo add-apt-repository ppa:jonathonf/texlive-2016
+  - sudo add-apt-repository -yq ppa:jonathonf/texlive-2016
   - sudo apt-get -qq update
   - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install texlive-full fonts-font-awesome biber
   
