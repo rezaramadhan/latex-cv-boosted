@@ -255,13 +255,14 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 % Bibliography %
 %%%%%%%%%%%%%%%%
 
-\RequirePackage[backend=biber, style=verbose, maxnames=99, sorting=ydnt]{biblatex}
+\RequirePackage[backend=biber, style=verbose, maxnames=99, sorting=ydnt, defernumbers=true]{biblatex}
 
-\DeclareFieldFormat[article]{title}{#1\par}
-\DeclareFieldFormat[book]{title}{#1\par}
-\DeclareFieldFormat[inproceedings]{title}{#1\par}
-\DeclareFieldFormat[misc]{title}{#1\par}
-\DeclareFieldFormat[report]{title}{#1\par}
+\DeclareFieldFormat[article]{title}{\small#1\par}
+\DeclareFieldFormat[book]{title}{\small#1\par}
+\DeclareFieldFormat[inproceedings]{title}{\small#1\par}
+\DeclareFieldFormat[misc]{title}{\small#1\par}
+\DeclareFieldFormat[software]{title}{\small#1\par}
+\DeclareFieldFormat[report]{title}{\small#1\par}
 
 \DeclareBibliographyDriver{article}{%
   \printfield{title}%
@@ -278,6 +279,13 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
     \printlist{publisher}%
     \setunit*{\addcomma\space}%
     \printfield{year}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
+  }
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{doi}%
     \newunit%
   }
   \par\vspace{0.3\baselineskip}
@@ -317,6 +325,14 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
     \printfield{year}%
     \setunit{\addcomma\space}%
     \printlist{location}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
+    \newunit%
+  }
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{doi}%
     \newunit%
   }
   \par\vspace{0.3\baselineskip}
@@ -330,13 +346,11 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
   \newblock%
   {%
     \footnotesize\addfontfeature{Color=lightgray}\itshape%
-    \printfield{booktitle}%
-    \setunit*{\addcomma\space}%
-    \printfield{note}%
+    \printfield{eprint}%
     \setunit*{\addcomma\space}%
     \printfield{year}%
-    \setunit{\addcomma\space}%
-    \printlist{location}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
     \newunit%
   }
   \par\vspace{0.3\baselineskip}
@@ -355,6 +369,26 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
     \printfield{number}%
     \setunit{\addcomma\space}%
     \printfield{year}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
+    \newunit%
+  }
+  \par\vspace{0.3\baselineskip}
+}
+
+\DeclareBibliographyDriver{software}{%
+  \printfield{title}%
+  \newblock%
+  \printnames{author}%
+  \par%
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{url}%
+    \setunit{\addcomma\space}%
+    \printfield{year}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
     \newunit%
   }
   \par\vspace{0.3\baselineskip}
@@ -362,29 +396,40 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
 \DeclareNameFormat{author}{%
   \small\addfontfeature{Color=lightgray}%
-  \ifblank{#3}{}{#3\space}#1%
+  \ifblank{\namepartgiven}{}{\namepartgiven\space}\namepartfamily%
   \ifthenelse{\value{listcount}<\value{liststop}}
     {\addcomma\space}
     {}%
 }
 
-\defbibheading{bibheading}[\bibname]{%
-   \subsubsection*{#1}
-   \markboth{#1}{#1}
-}
+\setlength{\bibitemsep}{0.5ex}
 
-\newcommand{\printbibsection}[2]{
+ \defbibheading{bibheading}[\bibname]{%
+   \vspace{0.3\baselineskip}%
+   \large\headingfont\color{headercolor}#1%
+   \markboth{#1}{#1}
+ }
+
+ \newcommand{\printbibsection}[3][]{
   \begin{refsection}
-    \nocite{*}
-    \printbibliography[sorting=chronological, type={#1}, title={#2}, heading=bibheading]
+     \nocite{*}
+     \ifblank{#1}{%
+         \printbibliography[sorting=chronological, type={#2}, title={#3}, heading=bibheading]%
+     }{%
+     \ifblank{#2}{%
+         \printbibliography[sorting=chronological, #1, title={#3}, heading=bibheading]%
+         }{%
+         \printbibliography[sorting=chronological, #1, type={#2}, title={#3}, heading=bibheading]%
+         }
+     }
   \end{refsection}
-}
+ }
+ 
   
-  
-\DeclareSortingScheme{chronological}{
-  \sort[direction=descending]{\field{year}}
-  \sort[direction=descending]{\field{month}}
-}
+ \DeclareSortingScheme{chronological}{
+   \sort[direction=descending]{\field{year}}
+   \sort[direction=descending]{\field{month}}
+ }
 
 
 
