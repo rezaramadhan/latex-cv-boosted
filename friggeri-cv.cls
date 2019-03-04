@@ -396,7 +396,7 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
 \DeclareNameFormat{author}{%
   \small\addfontfeature{Color=lightgray}%
-  \ifblank{\namepartgiven}{}{\namepartgiven\space}\namepartfamily%
+  \ifdefvoid{\namepartgiven}{}{\namepartgiven\space}\namepartfamily%
   \ifthenelse{\value{listcount}<\value{liststop}}
     {\addcomma\space}
     {}%
@@ -413,10 +413,10 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
  \newcommand{\printbibsection}[3][]{
   \begin{refsection}
      \nocite{*}
-     \ifblank{#1}{%
+     \ifdefvoid{#1}{%
          \printbibliography[sorting=chronological, type={#2}, title={#3}, heading=bibheading]%
      }{%
-     \ifblank{#2}{%
+     \ifdefvoid{#2}{%
          \printbibliography[sorting=chronological, #1, title={#3}, heading=bibheading]%
          }{%
          \printbibliography[sorting=chronological, #1, type={#2}, title={#3}, heading=bibheading]%
