@@ -423,7 +423,7 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
      \ifthenelse{\equal{#1}{}}{%
          \printbibliography[sorting=chronological, type={#2}, title={#3}, heading=bibheading]%
      }{%
-     \ifdefvoid{#2}{%
+     \ifthenelse{\equal{#2}{}}{%
          \printbibliography[sorting=chronological, #1, title={#3}, heading=bibheading]%
          }{%
          \printbibliography[sorting=chronological, #1, type={#2}, title={#3}, heading=bibheading]%
