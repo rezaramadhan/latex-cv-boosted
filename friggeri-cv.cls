@@ -396,11 +396,18 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
 \DeclareNameFormat{author}{%
   \small\addfontfeature{Color=lightgray}%
-  \ifthenelse{\equal{\namepartgiven}{}}{}{\namepartgiven\space}\namepartfamily%
-  \ifthenelse{\value{listcount}<\value{liststop}}
-    {\addcomma\space}
-    {}%
-}
+  \ifgiveninits
+    {\usebibmacro{name:given-family}
+      {\namepartfamily}
+      {\namepartgiveni}
+      {\namepartprefix}
+      {\namepartsuffix}}
+    {\usebibmacro{name:given-family}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
 
 \setlength{\bibitemsep}{0.5ex}
 
