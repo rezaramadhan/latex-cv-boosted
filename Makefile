@@ -8,7 +8,7 @@
 comma := ,
 BUILDDIR = _build
 COMPILER = xelatex
-BIBCOMPILER = biblatex
+BIBCOMPILER = biber
 PROJECT = cv
 BIBLIOGRAPHY = bibliography
 

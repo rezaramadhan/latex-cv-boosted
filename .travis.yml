@@ -31,7 +31,7 @@ before_install: |
   
 install:
   - sudo apt-get -qq update
-  - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install texlive-full fonts-font-awesome texlive-bibtex-extra biber
+  - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install texlive-full fonts-font-awesome biber
   
 before_script: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
