@@ -419,7 +419,6 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
  \newcommand{\printbibsection}[3][]{
   \begin{refsection}
-     \newrefcontext[sorting=chronological]%
      \nocite{*}%
      \ifthenelse{\equal{#1}{}}{%
          \printbibliography[type={#2}, title={#3}, heading=bibheading]%
