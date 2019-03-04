@@ -8,6 +8,7 @@
 comma := ,
 BUILDDIR = _build
 COMPILER = xelatex
+BIBCOMPILER = biblatex
 PROJECT = cv
 BIBLIOGRAPHY = bibliography
 
@@ -18,8 +19,8 @@ pdf: headon clean
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "First pass (via $(COMPILER)) done!"
 	@cp $(BIBLIOGRAPHY).bib $(BUILDDIR)
-	@biber --output_directory=$(BUILDDIR) $(PROJECT)
-	@echo "Second pass (via bibtex) done!"
+	@$(BIBCOMPILER) --output_directory=$(BUILDDIR) $(PROJECT)
+	@echo "Second pass (via $(BIBCOMPILER)) done!"
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
 	@echo "Third pass (via $(COMPILER)) done!"
 	@$(COMPILER) -interaction=nonstopmode -halt-on-error -output-directory=$(BUILDDIR) $(PROJECT).tex
