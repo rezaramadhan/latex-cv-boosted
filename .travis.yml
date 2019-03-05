@@ -43,11 +43,11 @@ jobs:
 
       after_script: |
         if [ -n "$GITHUB_API_KEY" ]; then
+          git stash -q
+          git fetch upstream
+          git checkout $TRAVIS_BRANCH-pdf
+          git pull -q -f upstream $TRAVIS_BRANCH-pdf
           for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do
-            git stash -q
-            git fetch upstream
-            git checkout $TRAVIS_BRANCH-pdf
-            git pull -q -f upstream $TRAVIS_BRANCH-pdf
             git checkout -f master cv-$DOCOPTIONS.pdf
             git add -f cv-$DOCOPTIONS.pdf
             git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
