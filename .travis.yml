@@ -7,11 +7,6 @@ branches:
   only:
   - master
 
-env:
-  - DOCOPTIONS=heros
-  - DOCOPTIONS=print
-  - DOCOPTIONS=a4paper
-
 before_install: |
   if [ -n "$GITHUB_API_KEY" ]; then
     git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
