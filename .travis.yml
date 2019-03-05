@@ -10,12 +10,7 @@ branches:
 env:
   - DOCOPTIONS=heros
   - DOCOPTIONS=print
-  - DOCOPTIONS=nocolors
   - DOCOPTIONS=a4paper
-  - DOCOPTIONS=alegreya
-  - DOCOPTIONS=merriweather
-  - DOCOPTIONS=nunito
-  - DOCOPTIONS=roboto
 
 before_install: |
   if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" = "heros" ]; then
