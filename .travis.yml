@@ -13,7 +13,7 @@ env:
   - DOCOPTIONS=a4paper
 
 before_install: |
-  if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" = "heros" ]; then
+  if [ -n "$GITHUB_API_KEY" ]; then
     git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
     git checkout --orphan $TRAVIS_BRANCH-pdf
     git rm -rf .
@@ -30,7 +30,7 @@ install:
   - sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install texlive-full fonts-font-awesome biber
   
 before_script: |
-  if [ -n "$GITHUB_API_KEY" ] && [ "$DOCOPTIONS" != "heros" ]; then
+  if [ -n "$GITHUB_API_KEY" ]; then
     git remote add upstream https://$GITHUB_USER:$GITHUB_API_KEY@github.com/$TRAVIS_REPO_SLUG
     git fetch upstream
     git checkout $TRAVIS_BRANCH-pdf
@@ -38,7 +38,23 @@ before_script: |
     git checkout $TRAVIS_BRANCH
   fi
 
-script: make custom
+script: 
+  - DOCOPTIONS=heros
+  - make custom
+  - DOCOPTIONS=print
+  - make custom
+  - DOCOPTIONS=nocolors	
+  - make custom
+  - DOCOPTIONS=a4paper
+  - make custom
+  - DOCOPTIONS=alegreya	
+  - make custom
+  - DOCOPTIONS=merriweather	
+  - make custom
+  - DOCOPTIONS=nunito	
+  - make custom
+  - DOCOPTIONS=roboto
+  - make custom
 
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
@@ -55,8 +71,6 @@ after_success: |
 jobs:
   include:
     - stage: Deploy
-      env:
-        - DOCOPTIONS=a4paper
       install:
         - sudo apt-get -qq update
         - sudo -E apt-get -yq --reinstall --no-install-suggests --no-install-recommends --force-yes install ghostscript imagemagick libmagickcore-dev libmagickwand-dev libmagic-dev
@@ -67,7 +81,7 @@ jobs:
           git checkout $TRAVIS_BRANCH-pdf
           git pull -f upstream $TRAVIS_BRANCH-pdf
           mkdir -p png
-          mogrify -density 288 -resize 25% -format png *.pdf[0]
+          mogrify -density 288 -resize 25% -format png *.pdf
           mv *.png png/
           git add -f png/*.png
           git -c user.name='travis' -c user.email='travis' commit -m "pngs for readme"
