@@ -33,26 +33,14 @@ before_script: |
     git checkout $TRAVIS_BRANCH
   fi
 
-script: 
-  - DOCOPTIONS=heros
-  - make custom
-  - DOCOPTIONS=print
-  - make custom
-  - DOCOPTIONS=nocolors	
-  - make custom
-  - DOCOPTIONS=a4paper
-  - make custom
-  - DOCOPTIONS=alegreya	
-  - make custom
-  - DOCOPTIONS=merriweather	
-  - make custom
-  - DOCOPTIONS=nunito	
-  - make custom
-  - DOCOPTIONS=roboto
-  - make custom
+script: |
+  for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do
+	  make custom
+  done
 
 after_success: |
   if [ -n "$GITHUB_API_KEY" ]; then
+    for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do
     git stash -q
     git fetch upstream
     git checkout $TRAVIS_BRANCH-pdf
@@ -61,6 +49,7 @@ after_success: |
     git add -f cv-$DOCOPTIONS.pdf
     git -c user.name='travis' -c user.email='travis' commit -m "current pdf with $DOCOPTIONS option"
     git push -q upstream $TRAVIS_BRANCH-pdf
+    done
   fi
 
 jobs:
