@@ -40,7 +40,7 @@ jobs:
           mkdir -p _build
           for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do
             echo "\documentclass[$DOCOPTIONS]{friggeri-cv}" > .head
-            docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra; tectonic --keep-intermediates --reruns 0 -o _build cv.tex; biber --input-directory _build cv; tectonic -o _build cv.tex"
+            docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "apt-get -qq update; apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra; tectonic --keep-intermediates --reruns 0 -o _build cv.tex; biber --input-directory _build cv; tectonic -o _build cv.tex"
             cp _build/cv.pdf cv-$DOCOPTIONS.pdf
           done
 
