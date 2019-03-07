@@ -37,10 +37,9 @@ jobs:
 
       script:
         - |
-          docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker 
           for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do
             echo "\documentclass[$DOCOPTIONS]{friggeri-cv}" > .head
-            /bin/sh -c "tectonic --keep-intermediates --reruns 0 -o _build cv.tex; biber --input-directory _build cv; tectonic -o _build cv.tex"
+            docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --keep-intermediates --reruns 0 -o _build cv.tex; biber --input-directory _build cv; tectonic -o _build cv.tex"
           done
 
       after_script: |
