@@ -8,7 +8,7 @@
     \def\@cv@fontface{AlegreyaSans}
 }
 \DeclareOption{merriweather}{
-    \def\@cv@fontface{MerriweatherSans}
+    \def\@cv@fontface{MarriweatherSans}
 }
 \DeclareOption{nunito}{
     \def\@cv@fontface{Nunito}
@@ -27,6 +27,7 @@
 
 \ProcessOptions\relax
 \LoadClass{article}
+\RequirePackage{longtable}
 
 %%%%%%%%%%
 % Colors %
@@ -207,9 +208,9 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 %%%%%%%%%%%%%%%%%%%%
 \setlength{\tabcolsep}{0pt}
 \newenvironment{entrylist}{%
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+  \begin{longtable}{@{\extracolsep{\fill}}ll}
 }{%
-  \end{tabular*}
+  \end{longtable}
 }
 \renewcommand{\bfseries}{\headingfont\color{headercolor}}
 \newcommand{\entry}[4]{%
@@ -257,12 +258,34 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
 \RequirePackage[backend=biber, style=verbose, maxnames=99, sorting=ydnt, defernumbers=true]{biblatex}
 
-\DeclareFieldFormat[article]{title}{\small#1\par}
-\DeclareFieldFormat[book]{title}{\small#1\par}
-\DeclareFieldFormat[inproceedings]{title}{\small#1\par}
-\DeclareFieldFormat[misc]{title}{\small#1\par}
-\DeclareFieldFormat[software]{title}{\small#1\par}
-\DeclareFieldFormat[report]{title}{\small#1\par}
+\DeclareFieldFormat[article,%
+                    thesis,%
+                    book,%
+                    inproceedings,%
+                    misc,%
+                    software,%
+                    report]{title}{\small#1\par}
+
+\DeclareBibliographyDriver{thesis}{%
+  \printfield{title}%
+  \par%
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{type}%
+    \setunit*{\addcomma\space}%
+    \usebibmacro{institution+location+date}%
+    \setunit*{\addcomma\space}%
+    \printfield{note}%
+  }
+  \newblock%
+  {%
+    \footnotesize\addfontfeature{Color=lightgray}\itshape%
+    \printfield{doi}%
+    \newunit%
+  }
+  \par\vspace{0.3\baselineskip}
+}
 
 \DeclareBibliographyDriver{article}{%
   \printfield{title}%
@@ -419,19 +442,21 @@ BoldItalicFont=\@cv@fontface-BoldItalic.ttf
 
  \newcommand{\printbibsection}[3][]{
   \begin{refsection}
-     \nocite{*}%
-     \ifthenelse{\equal{#1}{}}{%
-         \printbibliography[type={#2}, title={#3}, heading=bibheading]%
+     \nocite{*}
+     \ifblank{#1}{%
+         \printbibliography[sorting=chronological, type={#2}, title={#3}, heading=bibheading]%
      }{%
-     \ifthenelse{\equal{#2}{}}{%
-         \printbibliography[#1, title={#3}, heading=bibheading]%
+     \ifblank{#2}{%
+         \printbibliography[sorting=chronological, #1, title={#3}, heading=bibheading]%
          }{%
-         \printbibliography[#1, type={#2}, title={#3}, heading=bibheading]%
+         \printbibliography[sorting=chronological, #1, type={#2}, title={#3}, heading=bibheading]%
          }
      }
   \end{refsection}
  }
- 
+  
+
+  
   
  \DeclareSortingScheme{chronological}{
    \sort[direction=descending]{\field{year}}
