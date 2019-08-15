@@ -42,8 +42,9 @@ jobs:
             mkdir -p _build; \
             tectonic -o _build coverletter.tex; \
             cp _build/coverletter.pdf coverletter.pdf; \
-            for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do \
-              echo '=== Executing ${DOCOPTIONS} ==='; \
+            declare -a opts=('heros' 'print' 'nocolors' 'a4paper' 'alegreya' 'merriweather' 'nunito' 'roboto'); \
+            for DOCOPTIONS in '${arr[@]}'; do \
+              echo '=== Executing option ${DOCOPTIONS} ==='; \
               echo '\documentclass[${DOCOPTIONS}]{friggeri-cv}' > .head; \
               tectonic --keep-intermediates --reruns 0 -o _build cv.tex; \
               biber --input-directory _build cv; \
