@@ -1,14 +1,37 @@
+# Friggeri CV Boosted
+
 [![](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://github.com/JesperDramsch/friggeri-cv-boosted/tree/master-pdf) [![Build Status](https://travis-ci.org/JesperDramsch/friggeri-cv-boosted.svg?branch=master)](https://travis-ci.org/JesperDramsch/friggeri-cv-boosted)
+
+# Contests
+
+- [About](#about)
+    - [Features](#features)
+    - [How it looks](#how-it-looks)
+- [Options](#options)
+    - [Style](#style)
+        - [A4 Paper](#a4paper)
+        - [No Colors](#no-colors)
+        - [Print](#print)
+    - [Fonts](#fonts)
+        - [Heros](#font-heros)
+        - [Alegreya](#font-alegreya)
+        - [MerriWeather Sans](#font-merriWeather-sans)
+        - [Nunito](#font-nunito)
+        - [Roboto](#font-roboto)
+    - [Usage](#usage)
+        - [\score{n}](#scoren)
+        - [\courseentry{}{}{}](#courseentry)
+        - [Nunito](#font-nunito)
+        - [Roboto](#font-roboto)
+- [Technicalities](#technicalities)
+
 # About
-Modification of the friggeri-cv Latex template. Original was typeset in Helvetica and using colors inspired by Monokai. Modification uses extended colour palette and a choice of libre fonts.
 
-Uses TikZ for the header and some pretty tricks, XeTeX and fontspec to use fonts, biblatex to print publications and textpos for the aside.
+Versatile CV Typeset in LaTeX (XeTeX). Lots of [features](#features) for modern CVs and Resumés. Works for classic CVs, modern CVs, and academic CVs. Typeset beautifully, without the need to actually know design. Modification of the friggeri-cv Latex template with extended colour palette and a choice of libre fonts.
 
-![Example how a CV with this template can look like page 0](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-0.png)
-![Example how a CV with this template can look like page 1](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-1.png)
-![Example how a CV with this template can look like page 2](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-2.png)
+Available on [Overleaf Templates](https://www.overleaf.com/latex/templates/friggeri-cv-boosted/sscbbybmxcqs).
 
-# Features:
+## Features:
 
 * Two Column
 * Information-dense
@@ -17,6 +40,12 @@ Uses TikZ for the header and some pretty tricks, XeTeX and fontspec to use fonts
 * Publication List
 * Multiple Fonts
 * Student-Friendly
+
+## How it looks:
+
+![Example how a CV with this template can look like page 0](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-0.png)
+![Example how a CV with this template can look like page 1](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-1.png)
+![Example how a CV with this template can look like page 2](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-2.png)
 
 # Options
 Several class options are available:
@@ -97,3 +126,9 @@ Six inputs
 
 ### Effect
 Creates a special education-focused \entry in the the entrylist environment.
+
+
+# Technicalities
+Modification of the friggeri-cv Latex template. Original was typeset in Helvetica and using colors inspired by Monokai. Modification uses extended colour palette and a choice of libre fonts.
+
+Uses TikZ for the header and some pretty tricks, XeTeX and fontspec to use fonts, biblatex to print publications and textpos for the aside.
