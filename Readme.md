@@ -135,7 +135,7 @@ Modification of the friggeri-cv Latex template. Original was typeset in Helvetic
 Uses TikZ for the header and some pretty tricks, XeTeX and fontspec to use fonts, biblatex to print publications and textpos for the aside.
 
 # Coverletter
-[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/coverletter-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/coverletter.pdf)
+[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/coverletter.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/coverletter.pdf)
 
 ## Options
 Several class options are available:
