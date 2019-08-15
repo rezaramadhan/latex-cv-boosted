@@ -43,11 +43,13 @@ jobs:
             tectonic -o _build coverletter.tex; \
             cp _build/coverletter.pdf coverletter.pdf; \
             for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do \
-              echo '\documentclass[$DOCOPTIONS]{friggeri-cv}' > .head; \
+              echo '=== Executing ${DOCOPTIONS} ==='; \
+              echo '\documentclass[${DOCOPTIONS}]{friggeri-cv}' > .head; \
               tectonic --keep-intermediates --reruns 0 -o _build cv.tex; \
               biber --input-directory _build cv; \
               tectonic -o _build cv.tex; \
-              cp _build/cv.pdf cv-$DOCOPTIONS.pdf; \
+              cp _build/cv.pdf cv-${DOCOPTIONS}.pdf; \
+              echo '=== Copying and Clean up ==='; \
               rm -rf _build/*; \
             done"
 
