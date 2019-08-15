@@ -4,7 +4,7 @@
 
 # Contests
 
-- [About](#about)
+- [CV / Resumé](#about)
     - [Features](#features)
     - [How it looks](#how-it-looks)
 - [Options](#options)
@@ -24,6 +24,8 @@
         - [Nunito](#font-nunito)
         - [Roboto](#font-roboto)
 - [Technicalities](#technicalities)
+- [Coverletter](#coverletter)
+    - [Options](#options)
 
 # About
 
@@ -127,8 +129,17 @@ Six inputs
 ### Effect
 Creates a special education-focused \entry in the the entrylist environment.
 
-
 # Technicalities
 Modification of the friggeri-cv Latex template. Original was typeset in Helvetica and using colors inspired by Monokai. Modification uses extended colour palette and a choice of libre fonts.
 
 Uses TikZ for the header and some pretty tricks, XeTeX and fontspec to use fonts, biblatex to print publications and textpos for the aside.
+
+# Coverletter
+[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/coverletter-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/coverletter.pdf)
+
+## Options
+Several class options are available:
+
+* `a4paper`: Changes layout to A4.
+* `nocolors`: Changes to black and white, leaves headers.
+* `noadress`: Removes letter head from layout.
