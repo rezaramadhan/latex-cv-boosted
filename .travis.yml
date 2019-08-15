@@ -36,15 +36,21 @@ jobs:
         fi
 
       script:
-        - |
-          mkdir -p _build
-          for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do
-            echo "\documentclass[$DOCOPTIONS]{friggeri-cv}" > .head
-            docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "apt-get -qq update; apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra; tectonic --keep-intermediates --reruns 0 -o _build cv.tex; biber --input-directory _build cv; tectonic -o _build cv.tex"
-            cp _build/cv.pdf cv-$DOCOPTIONS.pdf
-          done
-          docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "apt-get -qq update; apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra; tectonic -o _build coverletter.tex"
-          cp _build/coverletter.pdf coverletter.pdf
+        - >
+          docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker 
+            /bin/sh -c "apt-get -qq update; 
+            apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra; 
+            wget https://raw.githubusercontent.com/iuf/rulebook/master/dependencies/koma-script/scrlttr2.cls; 
+            mkdir -p _build; 
+            tectonic -o _build coverletter.tex; 
+            cp _build/coverletter.pdf coverletter.pdf; 
+            for DOCOPTIONS in heros print nocolors a4paper alegreya merriweather nunito roboto; do 
+              echo "\documentclass[$DOCOPTIONS]{friggeri-cv}" > .head; 
+              tectonic --keep-intermediates --reruns 0 -o _build cv.tex; 
+              biber --input-directory _build cv; 
+              tectonic -o _build cv.tex; 
+              cp _build/cv.pdf cv-$DOCOPTIONS.pdf; 
+            done"
 
       after_script: |
         if [ -n "$GITHUB_API_KEY" ]; then
