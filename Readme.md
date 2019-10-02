@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/badge/PDF-latest-orange.svg?style=flat)](https://github.com/JesperDramsch/friggeri-cv-boosted/tree/master-pdf) [![Build Status](https://travis-ci.org/JesperDramsch/friggeri-cv-boosted.svg?branch=master)](https://travis-ci.org/JesperDramsch/friggeri-cv-boosted)
 
-# Contests
+# Contents
 
 - [CV / Resumé](#about)
     - [Features](#features)
