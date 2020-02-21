@@ -24,7 +24,7 @@ jobs:
         fi
       
       install:
-        - docker pull dxjoke/tectonic-docker
+        - docker pull jesperdramsch/tectonic-docker
       
       before_script: |
         if [ -n "$GITHUB_API_KEY" ]; then
@@ -36,22 +36,21 @@ jobs:
         fi
 
       script: |
-          docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker \
-            /bin/bash -c 'apt-get -qq update;  \
-            apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra texlive-latex-recommended; \
-            mkdir -p _build; \
-            tectonic -o _build coverletter.tex; \
-            cp _build/coverletter.pdf coverletter.pdf; \
+          docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind jesperdramsch/tectonic-docker \
+            /bin/bash -c 'mkdir -p _build; \
             for i in "heros" "print" "nocolors" "a4paper" "alegreya" "merriweather" "nunito" "roboto"; do \
               echo "=== Executing option $i ==="; \
-              rm -rf _build/*; \
               echo "\documentclass[$i]{friggeri-cv}" > .head; \
               tectonic --keep-intermediates --reruns 0 -o _build cv.tex; \
               biber --input-directory _build cv; \
-              tectonic --reruns 0 -o _build cv.tex; \
-              cp _build/cv.pdf cv-$i.pdf; \
+              tectonic -o _build cv.tex; \
               echo "=== Copying and Clean up ==="; \
-            done'
+              cp _build/cv.pdf cv-$i.pdf; \
+              rm -rf _build/*; \
+            done \
+            tectonic -o _build coverletter.tex; \
+            cp _build/coverletter.pdf coverletter.pdf; \
+            '
 
       after_script: |
         if [ -n "$GITHUB_API_KEY" ]; then
