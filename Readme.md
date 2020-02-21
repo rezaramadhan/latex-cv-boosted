@@ -31,7 +31,7 @@
 
 Versatile CV Typeset in LaTeX (XeTeX). Lots of [features](#features) for modern CVs and Resumés. Works for classic CVs, modern CVs, and academic CVs. Typeset beautifully, without the need to actually know design. Modification of the friggeri-cv Latex template with extended colour palette and a choice of libre fonts.
 
-Available on [Overleaf Templates](https://www.overleaf.com/latex/templates/friggeri-cv-boosted/sscbbybmxcqs).
+Available on [Overleaf Templates](https://www.overleaf.com/latex/templates/latex-cv-boosted/sscbbybmxcqs).
 
 ## Features:
 
@@ -45,9 +45,9 @@ Available on [Overleaf Templates](https://www.overleaf.com/latex/templates/frigg
 
 ## How it looks:
 
-![Example how a CV with this template can look like page 0](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-0.png)
-![Example how a CV with this template can look like page 1](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-1.png)
-![Example how a CV with this template can look like page 2](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-2.png)
+![Example how a CV with this template can look like page 0](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-heros-0.png)
+![Example how a CV with this template can look like page 1](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-heros-1.png)
+![Example how a CV with this template can look like page 2](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-heros-2.png)
 
 # Options
 Several class options are available:
@@ -58,13 +58,13 @@ Several class options are available:
 * `print`: Changes to black and white, removes header to minimize ink usage.
 
 ### A4Paper
-[![A4 Layout](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-a4paper-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-a4paper.pdf)
+[![A4 Layout](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-a4paper-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-a4paper.pdf)
 
 ### No Colors
-[![Version without color](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-nocolors-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-novolors.pdf)
+[![Version without color](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-nocolors-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-novolors.pdf)
 
 ### Print
-[![Print version](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-print-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-print.pdf)
+[![Print version](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-print-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-print.pdf)
 
 ## Fonts
 * `heros`: Standard TexGyre Heros font (introduced as alternative to Helvetica Neue by Sharelatex)
@@ -74,19 +74,19 @@ Several class options are available:
 * `roboto`: [See Example](https://fonts.google.com/specimen/Roboto) Roboto has a dual nature. It has a mechanical skeleton and the forms are largely geometric. At the same time, the font features friendly and open curves. 
 
 ### Font Heros
-[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-heros-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-heros.pdf)
+[![](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-heros-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-heros.pdf)
 
 ### Font Alegreya
-[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-alegreya-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-alegreya.pdf)
+[![](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-alegreya-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-alegreya.pdf)
 
 ### Font MerriWeather Sans
-[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-merriweather-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-merriweather.pdf)
+[![](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-merriweather-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-merriweather.pdf)
 
 ### Font Nunito
-[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-nunito-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-nunito.pdf)
+[![](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-nunito-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-nunito.pdf)
 
 ### Font Roboto
-[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/cv-roboto-0.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/cv-roboto.pdf)
+[![](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/cv-roboto-0.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/cv-roboto.pdf)
 
 
 # Usage
@@ -135,7 +135,7 @@ Modification of the friggeri-cv Latex template. Original was typeset in Helvetic
 Uses TikZ for the header and some pretty tricks, XeTeX and fontspec to use fonts, biblatex to print publications and textpos for the aside.
 
 # Coverletter
-[![](https://raw.githubusercontent.com/JesperDramsch/friggeri-cv-boosted/master-pdf/png/coverletter.png)](https://github.com/JesperDramsch/friggeri-cv-boosted/blob/master-pdf/coverletter.pdf)
+[![](https://raw.githubusercontent.com/JesperDramsch/latex-cv-boosted/master-pdf/png/coverletter.png)](https://github.com/JesperDramsch/latex-cv-boosted/blob/master-pdf/coverletter.pdf)
 
 ## Options
 Several class options are available:
