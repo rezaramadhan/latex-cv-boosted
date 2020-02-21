@@ -1,6 +1,7 @@
 FROM rust:latest as tectonic_install
 
 RUN apt-get update && apt-get install -yq --no-install-suggests --no-install-recommends --force-yes libfontconfig1-dev libgraphite2-dev libharfbuzz-dev libicu-dev zlib1g-dev
+RUN apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra texlive-latex-recommended
 RUN cargo install tectonic --force --vers 0.1.12
 
 WORKDIR /usr/src/tex
@@ -24,6 +25,7 @@ RUN for f in *.tex; do tectonic $f; done
 FROM debian:stretch-slim as ship_debian
 RUN apt-get update \
     && apt-get install -yq --no-install-suggests --no-install-recommends --force-yes libfontconfig1 libgraphite2-3 libharfbuzz0b libicu57 zlib1g libharfbuzz-icu0 libssl1.1 ca-certificates \
+    && apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra texlive-latex-recommended \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # copy tectonic binary to new image
