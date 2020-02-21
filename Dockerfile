@@ -1,7 +1,6 @@
 FROM rust:latest as tectonic_install
 
 RUN apt-get update && apt-get install -yq --no-install-suggests --no-install-recommends --force-yes libfontconfig1-dev libgraphite2-dev libharfbuzz-dev libicu-dev zlib1g-dev
-RUN apt-get -yq --no-install-suggests --no-install-recommends --force-yes install fonts-font-awesome texlive-fonts-extra texlive-latex-recommended
 RUN cargo install tectonic --force --vers 0.1.12
 
 WORKDIR /usr/src/tex
@@ -9,17 +8,6 @@ RUN wget 'https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/2
 RUN tar -xvzf biber-linux_x86_64.tar.gz
 RUN chmod +x biber
 RUN cp biber /usr/bin/biber
-
-COPY *.head ./
-COPY *.tex ./
-COPY *.bib ./
-COPY *.cls ./
-# first run - keep files for biber
-RUN tectonic --keep-intermediates --reruns 0 cv.tex
-# do the biber
-RUN biber cv
-# one last tectonic run over all files
-RUN for f in *.tex; do tectonic $f; done
 
 # use a lightweight debian - no need for whole rust environment
 FROM debian:stretch-slim as ship_debian
