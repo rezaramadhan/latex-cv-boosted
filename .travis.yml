@@ -41,15 +41,15 @@ jobs:
             for i in "heros" "print" "nocolors" "a4paper" "alegreya" "merriweather" "nunito" "roboto"; do \
               echo "=== Executing option $i ==="; \
               echo "\documentclass[$i]{friggeri-cv}" > .head; \
-              tectonic --keep-intermediates --reruns 0 -o _build cv.tex; \
-              biber --input-directory _build cv; \
-              tectonic -o _build cv.tex; \
+              tectonic --keep-intermediates --reruns 0 -o _build cv.tex && \
+              biber --input-directory _build cv && \
+              tectonic -o _build cv.tex || exit 1; \
               echo "=== Copying and Clean up ==="; \
               cp _build/cv.pdf cv-$i.pdf; \
               rm -rf _build/*; \
             done; \
-            tectonic -o _build coverletter.tex; \
-            cp _build/coverletter.pdf coverletter.pdf '
+            tectonic -o _build coverletter.tex && \
+            cp _build/coverletter.pdf coverletter.pdf || exit 1'
 
       after_script: |
         if [ -n "$GITHUB_API_KEY" ]; then
