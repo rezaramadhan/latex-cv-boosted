@@ -31,8 +31,6 @@
 
 Versatile CV Typeset in LaTeX (XeTeX). Lots of [features](#features) for modern CVs and Resumés. Works for classic CVs, modern CVs, and academic CVs. Typeset beautifully, without the need to actually know design. Modification of the friggeri-cv Latex template with extended colour palette and a choice of libre fonts.
 
-Available on [Overleaf Templates](https://www.overleaf.com/latex/templates/latex-cv-boosted/sscbbybmxcqs).
-
 ## Features:
 
 * Two Column
