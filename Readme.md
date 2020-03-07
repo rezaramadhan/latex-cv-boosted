@@ -95,7 +95,7 @@ Check Dante for [New Icons in Fontawesome](ftp://ftp.dante.de/tex-archive/fonts/
 
 ## Build Guide
 
-Building is done usiing Makefile. The default rule is to create both CV and Coverletter, but you can build both of them separately. The class options can be put into the `DOCOPTIONS` variable.
+You can use `make` to build the coverletter and CV. The default rule is to create both CV and Coverletter, but you can build both of them separately. The class options can be put into the `DOCOPTIONS` variable to modify the output.
 
 ### Example 1: Default build
 ```
