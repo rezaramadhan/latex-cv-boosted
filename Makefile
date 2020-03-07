@@ -49,8 +49,8 @@ print:
 
 custom: pdf
 
-cv: PROJECT=cv
-cv: cv-pdf
+cv: 
+	$(MAKE) pdf PROJECT=cv
 
 coverletter: PROJECT=coverletter
 coverletter: coverletter-pdf
