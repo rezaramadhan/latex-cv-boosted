@@ -52,8 +52,8 @@ custom: pdf
 cv: 
 	$(MAKE) pdf PROJECT=cv
 
-coverletter: PROJECT=coverletter
-coverletter: coverletter-pdf
+coverletter: 
+	$(MAKE) pdf PROJECT=coverletter
 
 default: cv coverletter
 
