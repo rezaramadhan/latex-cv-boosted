@@ -11,7 +11,7 @@ COMPILER = xelatex
 BIBCOMPILER = biber
 BIBLIOGRAPHY = bibliography
 
-cv-pdf coverletter-pdf: headon clean
+pdf: headon clean
 	@echo "Building $(PROJECT) in $(BUILDDIR) directory using $(COMPILER)."
 	@echo "Creating $(BUILDDIR) directory..."
 	@mkdir -p $(BUILDDIR)
