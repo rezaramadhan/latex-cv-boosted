@@ -41,7 +41,7 @@ a4pdf:
 
 nocolors:
 	$(MAKE) headon OPTIN=nocolors
-	$(MAKE) default DOCOPTIONS=$(DOCOPTIONS),print
+	$(MAKE) default DOCOPTIONS=$(DOCOPTIONS),nocolors
 
 print:
 	$(MAKE) headon OPTIN=print
